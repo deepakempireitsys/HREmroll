@@ -1,0 +1,66 @@
+﻿
+@model IEnumerable<HREmroll.Models.Designation>
+@{
+    ViewData["Title"] = "GetActiveDesignation";
+}
+
+
+<p>
+
+
+
+    <span>@Html.ActionLink("Add New Designation", "AddDesignation")</span>
+
+    <span>@Html.ActionLink("Active Designation", "GetActiveDesignation")</span>
+
+    @Html.ActionLink("Back to Designations List", "GetAllDesignation")
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.DEPARTMENT_NAME) </th>
+            <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+            @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</td>
+        <th>@Html.DisplayNameFor(model => model.Branch_name)</td>
+        <th>@Html.DisplayNameFor(model => model.DESIGNATION_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</td>
+        <th>
+            @Html.DisplayNameFor(model => model.ISACTIVE)</td>
+
+
+
+        <th>@Html.DisplayName("Edit / Delete")</td>
+
+
+    </tr>
+    @foreach (var item in Model)
+    {
+
+        <tr>
+            <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+            <td>@Html.DisplayFor(model => item.Branch_name)</td>
+            <td>@Html.DisplayFor(model => item.DESIGNATION_NAME)</td>
+            <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+            <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+            <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+
+            <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditDepartment", new { id = item.DESIGNATION_ID })
+                | @Html.ActionLink("Delete", "DeleteDepartment", new { id = item.DESIGNATION_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+
+    }
+
+</table> 

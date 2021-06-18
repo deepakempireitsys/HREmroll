@@ -1,0 +1,60 @@
+﻿
+@model IEnumerable<HREmroll.Models.Department>
+@{
+    ViewData["Title"] = "GetActiveDepartmentDetails";
+}
+
+
+<p>
+    @Html.ActionLink("Add New Department", "AddDepartment")
+    @Html.ActionLink("InActive Departments", "GetInActiveDepartments")
+    @Html.ActionLink("Back to Department List", "GetAllDepartments")
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.DEPARTMENT_NAME) </th>
+        <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+        @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</td>
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.DEPARTMENT_ID)</td>
+        <th>@Html.DisplayNameFor(model => model.DEPARTMENT_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</td>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</td>
+        <th>@Html.DisplayName("Edit / Delete")</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.DEPARTMENT_ID)
+<tr>
+    <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+    <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
+    <td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>
+    <td>@Html.DisplayFor(model => item.DEPARTMENT_ID)</td>
+    <td>@Html.DisplayFor(model => item.DEPARTMENT_NAME)</td>
+    <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+    <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+    <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+    <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+    <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+    <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+
+    <td>
+        @Html.ActionLink("Edit", "EditDepartment", new { id = item.DEPARTMENT_ID })
+        | @Html.ActionLink("Delete", "DeleteDepartment", new { id = item.DEPARTMENT_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+    </td>
+</tr>
+
+    }
+
+</table> 

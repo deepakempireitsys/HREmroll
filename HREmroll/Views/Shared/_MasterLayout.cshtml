@@ -1,0 +1,135 @@
+﻿<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    <style>
+        #nav {
+            list-style: none inside;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+            #nav li {
+                display: block;
+                position: relative;
+                float: left;
+                background: #222;
+               
+            }
+
+                #nav li a {
+                    display: block;
+                    padding: 8px;
+                    text-decoration: none;
+                    width: 142px;
+                    line-height: 35px;
+                    color: #ffffff;
+                    background: gray;
+                }
+
+                #nav li li a {
+                }
+
+                #nav li:hover {
+                    background: #222;
+                }
+
+            #nav ul {
+                position: absolute;
+                padding: 0;
+                left: 0;
+                display: none;
+               
+            }
+
+            #nav li:hover ul ul {
+                display: none;
+            }
+
+            #nav li:hover ul {
+                display: block;
+            }
+
+            #nav li li:hover ul {
+                display: block;
+             
+                margin-left: 200px;
+              
+                margin-top: -35px;
+             
+            }
+    </style>
+</head>
+<body>
+    <header class="container">
+        <h1 style="margin: revert !important; margin-left: 474px !important;
+    ">
+            Welcome To EMROLL .....
+        </h1>
+        <div class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                @*<div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    @Html.ActionLink("HREmroll", "GetAllCompany", "Company", new { area = "" }, new { @class = "navbar-brand" })
+                </div>
+                <br />*@
+                <div class="navbar-collapse collapse">
+                    <nav>
+                        <ul id="nav">
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+                            <li>@Html.ActionLink("Abouts", "Abouts", "Abouts")</li>
+
+                            <li>
+                                <a href="#">Master</a>
+                                <ul>
+                                    <li>@Html.ActionLink("Company Master", "GetAllCompany", "Company")</li>
+                                    <li>@Html.ActionLink("Branch Master", "GetAllBranchs", "Branch")</li>
+                                    <li>@Html.ActionLink("Department Master", "GetAllDepartments", "Department")</li>
+                                    <li>@Html.ActionLink("Designation Master", "GetAllDesignation", "Designation")</li>
+                                    <li>@Html.ActionLink("Category Master", "GetAllCategorys", "Category")</li>
+                                    <li>@Html.ActionLink("Division Master", "GetAllDivisions", "Division")</li>
+                                    <li>@Html.ActionLink("Grade Master", "GetAllGrades", "Grade")</li>
+                                    <li>@Html.ActionLink("Location Master", "GetAllLocations", "Location")</li>
+                                    <li>@Html.ActionLink("Project Master", "GetAllProjects", "Project")</li>
+
+
+                                </ul>
+                            </li>
+                            <li>@Html.ActionLink("Contact Us", "Contact", "Contact")</li>
+                            <li>@Html.ActionLink("Service", "Service", "Service")</li>
+                        </ul>
+                    </nav>
+                  
+                </div>
+            </div>
+        </div>
+    </header>
+
+  
+    <br />
+    <br />
+    <br />
+    <div class="container body-content">
+        @RenderBody()
+
+    </div>
+
+    <footer>
+        <p style=" margin-top: 487px !important;">&copy; @DateTime.Now.Year - My HREmroll Website</p>
+    </footer>
+
+    <script src="../Scripts/bootstrap.js"></script>
+    <script src="~/Scripts/jquery.validate.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+</body>
+</html>

@@ -1,0 +1,63 @@
+﻿
+@model IEnumerable<HREmroll.Models.Category>
+@{
+    ViewData["Title"] = "GetActiveCategoryDetails";
+}
+
+
+<p>
+    <span>@Html.ActionLink("Add New Category", "AddCategory")</span>
+
+    <span>@Html.ActionLink("InActive Category", "GetInActiveCategorys")</span>
+
+    <span>@Html.ActionLink("Back to Category List", "GetAllCategorys")</span>
+
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.CATEGORY_NAME) </th>
+            <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+            @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</td>
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.CATEGORY_ID)</td>
+        <th>@Html.DisplayNameFor(model => model.CATEGORY_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</td>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</td>
+        <th>@Html.DisplayName("Edit / Delete")</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.CATEGORY_ID)
+        <tr>
+            <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+            <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
+            <td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>
+            <td>@Html.DisplayFor(model => item.CATEGORY_ID)</td>
+            <td>@Html.DisplayFor(model => item.CATEGORY_NAME)</td>
+            <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+            <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+            <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+
+            <td>
+                @Html.ActionLink("Edit", "EditCategory", new { id = item.CATEGORY_ID })
+                | @Html.ActionLink("Delete", "DeleteCategory", new { id = item.CATEGORY_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+
+    }
+
+</table> 

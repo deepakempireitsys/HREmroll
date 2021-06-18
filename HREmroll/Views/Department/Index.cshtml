@@ -1,0 +1,50 @@
+﻿@model IEnumerable<HREmroll.Models.Department>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h4>Group Meeting Web App</h4>
+<hr/>
+<h4>
+    @*<a asp-action="AddDepartment">Add Department</a>*@
+    @Html.ActionLink("Create Department", "AddDepartment", "Department")
+</h4>
+<div>
+    <table class="table table-responsive table-bordered panel-primary">
+        <thead>
+        <th>Project Name</th>
+        @*<th>Group Lead Name</th>
+        <th>Team Lead Name</th>*@
+        <th>Description</th>
+        @*<th>Meeting Date</th>*@
+        <th></th>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+            <tr>
+                <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+                <td>@Html.DisplayFor(model => item.BRANCH_ID)</td>
+                <td>@Html.DisplayFor(model => item.DEPARTMENT_ID)</td>
+                <td>@Html.DisplayFor(model => item.DEPARTMENT_NAME)</td>
+                <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+                <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+                <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+                <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+                <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+                <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+                @*<td>@Html.DisplayFor(model => item.TeamLeadName)</td>
+        <td>@Html.DisplayFor(model => item.Description)</td>
+        <td>@Html.DisplayFor(model => item.GroupMeetingDate)</td>*@
+                @*<td>
+            <a asp-action="EditMeeting" asp-route-id="@item.BRANCH_ID">Edit</a>|
+            <a asp-action="DeleteMeeting" asp-route-id="@item.BRANCH_ID">Delete</a>
+        </td>*@
+            </tr>
+
+
+
+            }
+        </tbody>
+    </table>
+</div>

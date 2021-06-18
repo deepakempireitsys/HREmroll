@@ -1,0 +1,45 @@
+﻿@model IEnumerable<HREmroll.Models.Branch>
+
+@{
+    ViewData["Title"] = "Test";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+}
+
+<h1>Test</h1>
+
+
+<p> @Html.ActionLink("Add New Branch", "AddBranch") </p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            @Html.HiddenFor(model => item.BRANCH_ID)
+            <tr>
+
+                <td> @Html.DisplayFor(modelItem => item.BRANCH_NAME) </td>
+                <td> @Html.DisplayFor(modelItem => item.DESCRIPTION) </td>
+                @*<td> @Html.DisplayFor(modelItem => item.Address) </td>*@
+                <td>
+                    @Html.ActionLink("Edit", "EditEmpDetails", new { id = item.BRANCH_ID })
+                    | @Html.ActionLink("Delete", "DeleteEmp", new { id = item.BRANCH_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+                </td>
+            </tr>
+
+        }
+        @*@foreach (var item in Model) {
+                    <tr>
+                        <td>
+                            @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                            @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+                        </td>
+                    </tr>
+            }*@
+    </tbody>
+</table>

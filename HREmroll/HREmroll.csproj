@@ -2,6 +2,27 @@
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AppDesignerFolder>1Properties</AppDesignerFolder>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="Views\1Home\Index.cshtml" />
+    <None Include="Views\1Home\Privacy.cshtml" />
+    <None Include="Views\Shared\_Layout.cshtml" />
+    <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
+    <None Include="Views\1_ViewImports.cshtml" />
+    <None Include="Views\_ViewStart1.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Model\" />
+    <Folder Include="Views\1Shared\" />
+    <Folder Include="View\BranchMaster\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
+  </ItemGroup>
 
 </Project>
