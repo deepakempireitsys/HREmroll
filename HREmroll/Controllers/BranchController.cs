@@ -32,27 +32,31 @@ namespace HREmroll.Controllers
             return View(EmpRepo.GetAllBranchs());
         }
         // GET: Branch/AddBranch      
-        public ActionResult AddBranch()
+        
+
+
+
+        public ActionResult Add()
         {
             return View();
         }
 
         // POST: Branch/AddBranch      
         [HttpPost]
-        public IActionResult AddBranch(Branch obj)
+        public IActionResult Add(Branch obj)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
+                //if (ModelState.IsValid)
+                //{
                     BranchRepository objRepo = new BranchRepository(_configuration);
                     objRepo.AddBranch(obj);
 
                     ViewBag.Message = "Records added successfully.";
 
-                }
-
-                return View();
+                //}
+                return RedirectToAction("GetAllBranchs");
+                //return View();
             }
             catch
             {
