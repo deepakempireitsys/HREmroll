@@ -52,10 +52,10 @@ namespace HREmroll.Repository
                 param.Add("@MODIFIED_DATE", DateTime.Now);
                 param.Add("@ISACTIVE", 1);
                 param.Add("@StatementType", "Insert");
-                //con.Execute("PROC_EMROLL_Location_MASTER", param, commandType: CommandType.StoredProcedure);
+                //con.Execute("PROC_EMROLL_LOCATION_MASTER", param, commandType: CommandType.StoredProcedure);
                 //con.Close();
                 int i = 0;
-                i = _dapperAdapter.Execute("PROC_EMROLL_Location_MASTER", param, commandType: CommandType.StoredProcedure);
+                i = _dapperAdapter.Execute("PROC_EMROLL_LOCATION_MASTER", param, commandType: CommandType.StoredProcedure);
 
                 return i;
             }
@@ -189,7 +189,7 @@ namespace HREmroll.Repository
                 //con.Execute("PROC_EMROLL_Location_MASTER", param, commandType: CommandType.StoredProcedure);
                 //con.Close();
                 int i = 0;
-                i = _dapperAdapter.Execute("PROC_EMROLL_Location_MASTER", param, commandType: CommandType.StoredProcedure);
+                i = _dapperAdapter.Execute("PROC_EMROLL_LOCATION_MASTER", param, commandType: CommandType.StoredProcedure);
 
                 return i;
             }

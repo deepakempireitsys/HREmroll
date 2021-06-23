@@ -56,7 +56,7 @@ namespace HREmroll.Repository
                 //con.Close();
                 //con.Execute("PROC_EMROLL_DEPARTMENT_MASTER", param, commandType: CommandType.StoredProcedure);
                 int i = 0;
-                i = _dapperAdapter.Execute("PROC_EMROLL_DEPARTMENT_MASTER", param, commandType: CommandType.StoredProcedure);
+                i = _dapperAdapter.Execute("PROC_EMROLL_DIVISION_MASTER", param, commandType: CommandType.StoredProcedure);
                 //con.Execute("PROC_EMROLL_DEPARTMENT_MASTER", param, commandType: CommandType.StoredProcedure);
                 //con.Close();
                 return i;
