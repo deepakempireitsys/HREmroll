@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HREmroll.Models.Leave>
+@{
+    ViewData["Title"] = "GetAllLeaveDetails";
+}
+
+<span> @Html.ActionLink("Add New Leave", "AddLeave") </span>
+<span>@Html.ActionLink("InActive Leave", "GetInActiveLeave")</span>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.LEAVETYPE) </th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+        <th>@Html.DisplayName("Edit / Delete")</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.LEAVEID)
+        <tr>
+
+            <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+            <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
+            <td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>
+            <td>@Html.DisplayFor(model => item.LEAVETYPE) </td>
+            <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+            <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+            <td>@Html.DisplayFor(model => item.DESCRIPTION) </td>
+            <td>
+                @Html.ActionLink("Edit", "EditLeave", new { id = item.LEAVEID })
+                @Html.ActionLink("Delete", "DeleteLeave", new { id = item.LEAVEID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+
+    }
+
+</table>
