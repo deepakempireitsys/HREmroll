@@ -9,66 +9,45 @@ using System.Threading.Tasks;
 
 namespace HREmroll.Controllers
 {
-    public class BankController : Controller
+    public class CountryController : Controller
     {
-        private readonly IConfiguration _configuration;
-    
 
-        public BankController(IConfiguration configuration)
+        private readonly IConfiguration _configuration;
+
+
+        public CountryController(IConfiguration configuration)
         {
             //_logger = logger;
             _configuration = configuration;
         }
         public IActionResult Getall()
         {
-            BankRepository objRepo = new BankRepository(_configuration);
-            return View(objRepo.GetAllBank());
-        }
-
-        public IActionResult Active()
-        {
-            BankRepository objRepo = new BankRepository(_configuration);
-            return View(objRepo.GetActiveBank());
-        }
-        public IActionResult Inactive()
-        {
-            BankRepository objRepo = new BankRepository(_configuration);
-            return View(objRepo.GetInActiveBank());
-
+            CountryRepository objRepo = new CountryRepository(_configuration);
+            return View(objRepo.GetAll());
         }
         public ActionResult Create()
         {
-          
+
             return View();
         }
 
         // POST: Employee/AddEmployee      
         [HttpPost]
-        public IActionResult Create(Bank obj)
+        public IActionResult Create(Country obj)
         {
             try
             {
-                if (ModelState.IsValid)
-                {
-                    obj.CREATED_BY = 1;
-                    obj.CREATED_DATE = DateTime.Now;
-                    obj.MODIFIED_BY = 1;
-                    obj.MODIFIED_DATE = DateTime.Now;
+               
+                    CountryRepository objRepo = new CountryRepository(_configuration);
 
-                    BankRepository objRepo = new BankRepository(_configuration);
-
-                    objRepo.AddBank(obj);
+                    objRepo.AddCountry(obj);
 
                     ViewBag.Message = "Records added successfully.";
 
                     return RedirectToAction("GetAll");
-                }
-                else
-                { 
-                    return View(); 
-                }
+               
 
-     
+
             }
             catch
             {
@@ -77,15 +56,15 @@ namespace HREmroll.Controllers
         }
         public IActionResult Edit(int id)
         {
-            BankRepository objRepo = new BankRepository(_configuration);
-            Bank obj = objRepo.GetAllBank().Find(obj => obj.BANK_ID == id);
+            CountryRepository objRepo = new CountryRepository(_configuration);
+            Country obj = objRepo.GetAll().Find(obj => obj.COUNTRY_ID == id);
             //return View(EmpRepo.GetAllEmployees().Find(Emp => Emp. == id));
-           
+
             return View(obj);
 
         }
         [HttpPost]
-        public IActionResult Edit(Bank  obj)
+        public IActionResult Edit(Country obj)
         {
             try
             {
@@ -93,9 +72,9 @@ namespace HREmroll.Controllers
                 {
 
 
-                    BankRepository objRepo = new BankRepository(_configuration);
+                    CountryRepository objRepo = new CountryRepository(_configuration);
 
-                    objRepo.UpdateBank(obj);
+                    objRepo.UpdateCountry(obj);
 
                     return RedirectToAction("GetAll");
                 }
@@ -115,10 +94,10 @@ namespace HREmroll.Controllers
         {
             try
             {
-                BankRepository objRepo = new BankRepository(_configuration);
-                if (objRepo.DeleteBank(id))
+                CountryRepository objRepo = new CountryRepository(_configuration);
+                if (objRepo.DeleteCountry(id))
                 {
-                    ViewBag.AlertMsg = "Bank deleted successfully";
+                    ViewBag.AlertMsg = "Counry deleted successfully";
 
                 }
                 return RedirectToAction("GetAll");
@@ -131,6 +110,5 @@ namespace HREmroll.Controllers
 
 
         }
-
     }
 }
