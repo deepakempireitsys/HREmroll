@@ -6,6 +6,21 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\**" />
+    <Compile Remove="Views\1Shared\**" />
+    <Compile Remove="View\**" />
+    <Content Remove="Model\**" />
+    <Content Remove="Views\1Shared\**" />
+    <Content Remove="View\**" />
+    <EmbeddedResource Remove="Model\**" />
+    <EmbeddedResource Remove="Views\1Shared\**" />
+    <EmbeddedResource Remove="View\**" />
+    <None Remove="Model\**" />
+    <None Remove="Views\1Shared\**" />
+    <None Remove="View\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\1Home\Index.cshtml" />
     <None Include="Views\1Home\Privacy.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
@@ -15,13 +30,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Model\" />
-    <Folder Include="Views\1Shared\" />
-    <Folder Include="View\BranchMaster\" />
-  </ItemGroup>
-
-  <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
   </ItemGroup>
 

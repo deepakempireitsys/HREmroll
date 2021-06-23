@@ -1,0 +1,160 @@
+﻿
+@model HREmroll.Models.Holiday
+
+@{
+    ViewData["Title"] = "EditHoliday";
+    
+}
+
+@using (@Html.BeginForm())
+
+
+{@Html.AntiForgeryToken()
+
+
+<div>
+    @Html.ActionLink("Back to Holiday List", "GetAllHolidays")
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <div class="form-group">
+        @Html.HiddenFor(model => model.Holiday_ID)
+    </div>
+
+    @*<div class="form-group">
+            @Html.HiddenFor(model => model.CREATED_DATE)
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.MODIFIED_DATE)
+        </div>*@
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.HOLIDAY_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HOLIDAY_NAME, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    @*<div class="form-group">
+        @Html.LabelFor(model => model.STATE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+
+            @Html.DropDownListFor(model => model.STATE, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select STATE")
+
+        </div>
+    </div>*@
+    <div class="form-group">
+        @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+
+
+            @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
+
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.MULTIPLE_HOLIDAY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.MULTIPLE_HOLIDAY, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.HOLIDAY_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.HOLIDAY_DATE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.HOLIDAY_DATE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.MESSAGE_TEXT, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.MESSAGE_TEXT, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.MESSAGE_TEXT, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.HOLIDAY_CATEGORY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.RadioButtonFor(model => model.HOLIDAY_CATEGORY, "National", false)@Html.Label("National")
+            @Html.RadioButtonFor(model => model.HOLIDAY_CATEGORY, "Festival", false)@Html.Label("Festival")
+        </div>
+    </div>
+
+    <div class="form-group">
+        @Html.LabelFor(model => model.REPEAT_ANNUALLY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.REPEAT_ANNUALLY, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.HALF_DAY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.HALF_DAY, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.PRESENT_COMPLUSARY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.PRESENT_COMPLUSARY, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.SMS, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.SMS, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.OPTIONAL_HOLIDAY, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.OPTIONAL_HOLIDAY, new { htmlAttributes = new { @class = "form-control" } })
+            @*@Html.ValidationMessageFor(model => model.HOLIDAY_NAME, "", new { @class = "text-danger" })*@
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(model => model.ISACTIVE, htmlAttributes: new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.CheckBoxFor(model => model.ISACTIVE, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessageFor(model => model.ISACTIVE, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+        <input type="submit" value="Save" class="btn btn-default" />
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10" style="color:green">
+        @ViewBag.Message
+
+    </div>
+</div>
+
+
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+
+</script>
+
