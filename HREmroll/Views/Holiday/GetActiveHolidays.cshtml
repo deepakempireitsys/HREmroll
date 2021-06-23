@@ -1,0 +1,66 @@
+﻿
+@model IEnumerable<HREmroll.Models.Holiday>
+@{
+    ViewData["Title"] = "GetActiveHolidayDetails";
+}
+
+
+<p>
+    @Html.ActionLink("Add New Holiday", "AddHoliday")
+    @Html.ActionLink("InActive Holiday", "GetInActiveHolidays")
+    @Html.ActionLink("Back to Holiday List", "GetAllHolidays")
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.DEPARTMENT_NAME) </th>
+        <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+        @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.HOLIDAY_NAME)</th>
+        @*<th>@Html.DisplayNameFor(model => model.STATE)</th>*@
+        @*<th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</td>*@
+        <th>@Html.DisplayNameFor(model => model.MULTIPLE_HOLIDAY)</th>
+        <th>@Html.DisplayNameFor(model => model.HOLIDAY_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.MESSAGE_TEXT)</th>
+        <th>@Html.DisplayNameFor(model => model.HOLIDAY_CATEGORY)</th>
+        <th>@Html.DisplayNameFor(model => model.REPEAT_ANNUALLY)</th>
+        <th>@Html.DisplayNameFor(model => model.HALF_DAY)</th>
+        <th>@Html.DisplayNameFor(model => model.PRESENT_COMPLUSARY)</th>
+        <th>@Html.DisplayNameFor(model => model.SMS)</th>
+        <th>@Html.DisplayNameFor(model => model.OPTIONAL_HOLIDAY)</th>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
+        <th>@Html.DisplayName("Edit / Delete")</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.Holiday_ID)
+<tr>
+    <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+    <td>@Html.DisplayFor(model => item.HOLIDAY_NAME)</td>
+    @*<td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>*@
+    @*<td>@Html.DisplayFor(model => item.STATE)</td>*@
+    <td>@Html.DisplayFor(model => item.MULTIPLE_HOLIDAY)</td>
+    <td>@Html.DisplayFor(model => item.HOLIDAY_DATE)</td>
+    <td>@Html.DisplayFor(model => item.MESSAGE_TEXT)</td>
+    <td>@Html.DisplayFor(model => item.HOLIDAY_CATEGORY)</td>
+    <td>@Html.DisplayFor(model => item.REPEAT_ANNUALLY)</td>
+    <td>@Html.DisplayFor(model => item.HALF_DAY)</td>
+    <td>@Html.DisplayFor(model => item.PRESENT_COMPLUSARY)</td>
+    <td>@Html.DisplayFor(model => item.SMS)</td>
+    <td>@Html.DisplayFor(model => item.OPTIONAL_HOLIDAY)</td>
+    <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+
+    <td>
+        @Html.ActionLink("Edit", "EditHoliday", new { id = item.Holiday_ID })
+        | @Html.ActionLink("Delete", "DeleteHoliday", new { id = item.Holiday_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+    </td>
+</tr>
+
+    }
+
+</table> 
