@@ -1,0 +1,48 @@
+﻿
+@model IEnumerable<HREmroll.Models.State>
+@{
+    ViewData["Title"] = "All State";
+}
+
+
+<p>
+    <span>@Html.ActionLink("Add New State", "Create")</span>
+
+
+
+
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.DEPARTMENT_NAME) </th>
+            <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+            @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+
+        <th>@Html.DisplayNameFor(model => model.COUNTRY_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.STATE_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</td>
+
+
+        <th>@Html.DisplayName("Edit / Delete")</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.STATE_ID)
+        <tr>
+            <td>@Html.DisplayFor(model => item.COUNTRY_NAME)</td>
+
+            <td>@Html.DisplayFor(model => item.STATE_NAME)</td>
+            <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.STATE_ID })
+                | @Html.ActionLink("Delete", "Delete", new { id = item.STATE_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+
+    }
+
+</table> 
