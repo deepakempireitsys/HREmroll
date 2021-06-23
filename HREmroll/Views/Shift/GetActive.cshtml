@@ -1,0 +1,119 @@
+﻿
+@model IEnumerable<HREmroll.Models.Shift>
+@{
+    ViewData["Title"] = "Get All Active Shift Details Only";
+}
+
+
+<p>
+    <span>@Html.ActionLink("Add New Shift", "Add")</span>
+
+    <span>@Html.ActionLink("InActive Shift", "GetInActive")</span>
+
+    <span>@Html.ActionLink("Back to All Shift List", "GetAll")</span>
+    
+
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.DEPARTMENT_NAME) </th>
+            <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+            @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+
+        <th>@Html.DisplayNameFor(model => model.SHIFT_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.SHIFT_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.DEPARTMENT_ID)</th>
+        <th>
+            @Html.DisplayNameFor(model => model.DEPARTMENT_NAME)</th>
+        @*<th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>*@
+    <th>@Html.DisplayNameFor(model => model.AUTO_SHIFT)</th>
+    <th>@Html.DisplayNameFor(model => model.SHIFT_START_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.SHIFT_END_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.SHIFT_DURATION)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK1)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK1_START_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK1_END_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK1_DURATION)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK2)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK2_START_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK2_END_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK2_DURATION)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK3)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK3_START_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK3_END_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.BREAK3_DURATION)</th>
+    <th>@Html.DisplayNameFor(model => model.HALF_DAY_ON)</th>
+    <th>@Html.DisplayNameFor(model => model.HALF_DAY_OF_WEEK)</th>
+    <th>@Html.DisplayNameFor(model => model.HALF_DAY_MIN_HOURS)</th>
+    <th>@Html.DisplayNameFor(model => model.HALF_DAY_START_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.HALF_DAY_END_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.HALF_DAY_DURATION)</th>
+
+    <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
+    <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
+    <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
+    <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</th>
+    <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
+    <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</th>
+    <th>@Html.DisplayName("Edit / Delete")</th>
+
+</tr>
+@foreach (var item in Model)
+{
+    @Html.HiddenFor(model => item.DEPARTMENT_ID)
+    <tr>
+        <td>@Html.DisplayFor(model => item.SHIFT_ID)</td>
+        <td>@Html.DisplayFor(model => item.SHIFT_NAME)</td>
+        <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+        <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
+        <td>@Html.DisplayFor(model => item.BRANCH_ID)</td>
+        <td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>
+        <td>@Html.DisplayFor(model => item.DEPARTMENT_ID)</td>
+        <td>@Html.DisplayFor(model => item.DEPARTMENT_NAME)</td>
+        @*<td>@Html.DisplayFor(model => item.ISACTIVE)</td>*@
+        <td>@Html.DisplayFor(model => item.AUTO_SHIFT)</td>
+        <td>@Html.DisplayFor(model => item.SHIFT_START_TIME)</td>
+        <td>@Html.DisplayFor(model => item.SHIFT_END_TIME)</td>
+        <td>@Html.DisplayFor(model => item.SHIFT_DURATION)</td>
+        <td>@Html.DisplayFor(model => item.BREAK1)</td>
+        <td>@Html.DisplayFor(model => item.BREAK1_START_TIME)</td>
+        <td>@Html.DisplayFor(model => item.BREAK1_END_TIME)</td>
+        <td>@Html.DisplayFor(model => item.BREAK1_DURATION)</td>
+        <td>@Html.DisplayFor(model => item.BREAK2)</td>
+        <td>@Html.DisplayFor(model => item.BREAK2_START_TIME)</td>
+        <td>@Html.DisplayFor(model => item.BREAK2_END_TIME)</td>
+        <td>@Html.DisplayFor(model => item.BREAK2_DURATION)</td>
+        <td>@Html.DisplayFor(model => item.BREAK3)</td>
+        <td>@Html.DisplayFor(model => item.BREAK3_START_TIME)</td>
+        <td>@Html.DisplayFor(model => item.BREAK3_END_TIME)</td>
+        <td>@Html.DisplayFor(model => item.BREAK3_DURATION)</td>
+        <td>@Html.DisplayFor(model => item.HALF_DAY_ON)</td>
+        <td>@Html.DisplayFor(model => item.HALF_DAY_OF_WEEK)</td>
+        <td>@Html.DisplayFor(model => item.HALF_DAY_MIN_HOURS)</td>
+        <td>@Html.DisplayFor(model => item.HALF_DAY_START_TIME)</td>
+        <td>@Html.DisplayFor(model => item.HALF_DAY_END_TIME)</td>
+        <td>@Html.DisplayFor(model => item.HALF_DAY_DURATION)</td>
+
+        <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+        <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+        <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+        <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+        <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+        <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id = item.SHIFT_ID })
+            | @Html.ActionLink("Delete", "Delete", new { id = item.SHIFT_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+        </td>
+    </tr>
+
+}
+
+</table> 

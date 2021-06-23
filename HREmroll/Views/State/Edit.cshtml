@@ -1,6 +1,6 @@
-﻿@model HREmroll.Models.Department
+﻿@model HREmroll.Models.State
 @{
-    ViewData["Title"] = "AddDepartment";
+    ViewData["Title"] = "Update State";
 
 }
 
@@ -8,13 +8,14 @@
 {@Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4> Add Department </h4>
+    <h4> Update State </h4>
 </div>
 
 
 
+
 <div>
-    @Html.ActionLink("Back to Department List", "GetAllDepartments")
+    @Html.ActionLink("Back to State List", "GetAll")
 
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -23,25 +24,13 @@
 
 
     <table>
+
         <tr>
             <td>
-                @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.COUNTRY_ID, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new {@type= "number", @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
+                @Html.DropDownListFor(model => model.COUNTRY_ID, new SelectList(ViewBag.Data, "COUNTRY_ID", "COUNTRY_NAME"), "Select State")
             </td>
 
             <td>
@@ -49,13 +38,13 @@
         </tr>
         <tr>
             <td>
-                @Html.LabelFor(model => model.DEPARTMENT_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.STATE_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.EditorFor(model => model.DEPARTMENT_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.STATE_NAME, new { htmlAttributes = new { @class = "form-control" } })
             </td>
             <td>
-                @Html.ValidationMessageFor(model => model.DEPARTMENT_NAME, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.STATE_NAME, "", new { @class = "text-danger" })
             </td>
         </tr>
         <tr>
@@ -71,6 +60,7 @@
             <td>
             </td>
         </tr>
+
         <tr>
             <td>
             </td>
@@ -120,19 +110,12 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.HiddenFor(model => model.DEPARTMENT_ID)
+        @Html.HiddenFor(model => model.STATE_ID)
     </div>
 
-    <div class="form-group">
-        @Html.HiddenFor(model => model.CREATED_DATE)
-    </div>
 
     <div class="form-group">
-        @Html.HiddenFor(model => model.MODIFIED_DATE)
-    </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BRANCH_NAME)
+        @Html.HiddenFor(model => model.COUNTRY_NAME)
     </div>
 
 
