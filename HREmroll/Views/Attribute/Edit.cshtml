@@ -1,6 +1,6 @@
-﻿@model HREmroll.Models.Grade
+﻿@model HREmroll.Models.Attribute
 @{
-    ViewData["Title"] = "AddGrade";
+    ViewData["Title"] = "Update Attribute";
 
 }
 
@@ -8,13 +8,15 @@
 {@Html.AntiForgeryToken()
 
 <div class="form-horizontal">
-    <h4> Add Grade </h4>
+    <h4> Update Attribute </h4>
 </div>
 
 
 
+
+
 <div>
-    @Html.ActionLink("Back to Grade List", "GetAllGrades")
+    @Html.ActionLink("Back to Attribute List", "GetAll")
 
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -28,36 +30,25 @@
                 @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
+                @Html.DropDownListFor(model => model.CMP_ID, new SelectList(ViewBag.Data, "CMP_ID", "CMP_NAME"), "Select Country")
             </td>
 
             <td>
             </td>
         </tr>
+
         <tr>
             <td>
-                @Html.LabelFor(model => model.GRADE_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                @Html.LabelFor(model => model.ATTRIBUTE_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.EditorFor(model => model.GRADE_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.ATTRIBUTE_NAME, new { htmlAttributes = new { @class = "form-control" } })
             </td>
             <td>
-                @Html.ValidationMessageFor(model => model.GRADE_NAME, "", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ATTRIBUTE_NAME, "", new { @class = "text-danger" })
             </td>
         </tr>
+
         <tr>
             <td>
                 @Html.LabelFor(model => model.DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
@@ -71,6 +62,22 @@
             <td>
             </td>
         </tr>
+
+
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.ISACTIVE, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.CheckBoxFor(Model => Model.ISACTIVE)
+
+
+            </td>
+            <td>
+            </td>
+
+        </tr>
+
         <tr>
             <td>
             </td>
@@ -120,7 +127,7 @@
         </div>
     </div>
     <div class="form-group">
-        @Html.HiddenFor(model => model.GRADE_ID)
+        @Html.HiddenFor(model => model.ATTRIBUTE_ID)
     </div>
 
     <div class="form-group">
@@ -131,9 +138,7 @@
         @Html.HiddenFor(model => model.MODIFIED_DATE)
     </div>
 
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BRANCH_NAME)
-    </div>
+
 
 
     @*

@@ -1,16 +1,16 @@
 ﻿
-@model IEnumerable<HREmroll.Models.Grade>
+@model IEnumerable<HREmroll.Models.Licence>
 @{
-    ViewData["Title"] = "GetAllGradeDetails";
+    ViewData["Title"] = "GetAllLicenceDetails";
 }
 
 
 <p>
-    <span>@Html.ActionLink("Add New Grade", "AddGrade")</span>
+    <span>@Html.ActionLink("Add New Licence", "Add")</span>
 
-    <span>@Html.ActionLink("Active Grade", "GetActiveGrades")</span>
+    <span>@Html.ActionLink("Active Licence", "GetActive")</span>
 
-    <span>@Html.ActionLink("Back to Grade List", "GetAllGrades")</span>
+    <span>@Html.ActionLink("InActive Licence", "GetInActive")</span>
 
 </p>
 
@@ -18,15 +18,15 @@
 
     <tr>
 
-        @*<th border="1"> @Html.DisplayNameFor(model => model.GRADE_NAME) </th>
-        <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
-        @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+        @*<th border="1"> @Html.DisplayNameFor(model => model.LICENCE_NAME) </th>
+            <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+            @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
 
         <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
         <th>@Html.DisplayNameFor(model => model.CMP_NAME)</th>
-        <th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</th>
-        <th>@Html.DisplayNameFor(model => model.GRADE_ID)</th>
-        <th>@Html.DisplayNameFor(model => model.GRADE_NAME)</th>
+        
+        <th>@Html.DisplayNameFor(model => model.LICENCE_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.LICENCE_NAME)</th>
         <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
         <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
         <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
@@ -38,13 +38,13 @@
     </tr>
     @foreach (var item in Model)
     {
-        @Html.HiddenFor(model => item.GRADE_ID)
+        @Html.HiddenFor(model => item.LICENCE_ID)
         <tr>
             <td>@Html.DisplayFor(model => item.CMP_ID)</td>
             <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
-            <td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>
-            <td>@Html.DisplayFor(model => item.GRADE_ID)</td>
-            <td>@Html.DisplayFor(model => item.GRADE_NAME)</td>
+            
+            <td>@Html.DisplayFor(model => item.LICENCE_ID)</td>
+            <td>@Html.DisplayFor(model => item.LICENCE_NAME)</td>
             <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
             <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
             <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
@@ -53,8 +53,8 @@
             <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
 
             <td>
-                @Html.ActionLink("Edit", "EditGrade", new { id = item.GRADE_ID })
-                | @Html.ActionLink("Delete", "DeleteGrade", new { id = item.GRADE_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+                @Html.ActionLink("Edit", "Edit", new { id = item.LICENCE_ID })
+                | @Html.ActionLink("Delete", "Delete", new { id = item.LICENCE_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
             </td>
         </tr>
 
