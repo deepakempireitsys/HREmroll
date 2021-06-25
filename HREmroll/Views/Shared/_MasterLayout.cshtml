@@ -8,6 +8,12 @@
     @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
     @*<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />*@
     <style>
+        .text-danger {
+            color: #c90417 !important
+        }
+    </style>
+
+    <style>
         #nav {
             list-style: none inside;
             margin: 0;
@@ -109,7 +115,12 @@
                                     <li>@Html.ActionLink("Country Master", "Getall", "Country")</li>
                                     <li>@Html.ActionLink("State Master", "Getall", "State")</li>
                                     <li>@Html.ActionLink("City Master", "Getall", "City")</li>
+                                    <li>@Html.ActionLink("Licence Master", "Getall", "Licence")</li>
                                     <li>@Html.ActionLink("Leave Master", "GetAllLeaveDetails", "Leave")</li>
+                                    <li>@Html.ActionLink("Qualification Master", "GetAll", "Qualification")</li>
+                                    <li>@Html.ActionLink("Skill Master", "GetAll", "Skill")</li>
+                                    <li>@Html.ActionLink("Attribute Master", "GetAll", "Attribute")</li>
+                                    <li>@Html.ActionLink("Sub Branch", "GetAllSubBranch", "SubBranch")</li>
 
                                 </ul>
                             </li>

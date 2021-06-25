@@ -64,10 +64,25 @@ namespace HREmroll.Models
 
 		[Display(Name = "DOMAIN NAME")]
 		public	string				DOMAIN_NAME		{ get; set; }			// VARCHAR(50) NULL,
-
+		
 		[Display(Name = "LWF NO")]
 		public	string				LWF_NO			{ get; set; }           // VARCHAR(50) NULL, 
 
+		[Display(Name = "LOGO FILE NAME")]
+		public	string				LOGO_NAME		{ get; set; }           // VARCHAR(250) NULL,
+		
+		[Display(Name = "LOGO TYPE")]
+		public	string				LOGO_TYPE		{ get; set; }           // VARCHAR(10) NULL,
+		
+		[Display(Name = "LOGO PATH")]
+		public	string				LOGO_PATH		{ get; set; }           // VARCHAR(250) NULL,
+		
+		[Display(Name = "LOGO EXT")]
+		public	string				LOGO_EXT		{ get; set; }           // VARCHAR(5) NULL,
+		
+		[Display(Name = "LOGO BLOB")]
+		public	byte[]				LOGO_BLOB		{ get; set; }           // VARCHAR(MAX) NULL,
+		
 		[Display(Name = "DESCRIPTION")]
 		//[DataType(DataType.MultilineText)]
 		public	string				DESCRIPTION		{ get; set; }			// VARCHAR(500) NULL, 
@@ -86,10 +101,12 @@ namespace HREmroll.Models
 
 		[Display(Name = "ISACTIVE")]
 		public	bool				ISACTIVE		{ get; set; }           // BIT NULL,
-        
-
-        //public string		ACTION{ get; set; }				// NVARCHAR(20) = ''
 
 
-    }
+		//public string		ACTION{ get; set; }				// NVARCHAR(20) = ''
+
+		//public CmpLogo Logo { get; set; }
+
+
+	}
 }

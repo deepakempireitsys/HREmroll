@@ -1,0 +1,65 @@
+﻿
+@model IEnumerable<HREmroll.Models.Qualification>
+@{
+    ViewData["Title"] = "All Qualification";
+}
+
+
+<p>
+    <span>@Html.ActionLink("Add New Qualification", "Create")</span>
+
+    <span>@Html.ActionLink("Active Qualification", "Active")</span>
+    <span>@Html.ActionLink("InActive Qualification", "Inactive")</span>
+
+
+
+</p>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+        @*<th border="1"> @Html.DisplayNameFor(model => model.DEPARTMENT_NAME) </th>
+            <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+            @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
+
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.QUALIFICATION_NAME)</td>
+        <th>@Html.DisplayNameFor(model => model.TYPE)</td>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</td>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</td>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</td>
+
+
+
+        <th>@Html.DisplayName("Edit / Delete")</td>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.QUALIFICATION_ID)
+        <tr>
+            <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
+            <td>@Html.DisplayFor(model => item.QUALIFICATION_NAME)</td>
+            <td>@Html.DisplayFor(model => item.TYPE)</td>
+            <td>@Html.DisplayFor(model => item.DESCRIPTION)</td>
+
+            <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+            <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+            <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+            <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+
+
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.QUALIFICATION_ID })
+                | @Html.ActionLink("Delete", "Delete", new { id = item.QUALIFICATION_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+            </td>
+        </tr>
+
+    }
+
+</table> 

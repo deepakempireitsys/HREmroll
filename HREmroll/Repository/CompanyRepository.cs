@@ -63,6 +63,12 @@ namespace HREmroll.Repository
                 param.Add("@DOMAIN_NAME"        , obj.DOMAIN_NAME);
                 param.Add("@COMPANY_CODE"       , obj.COMPANY_CODE);
                 param.Add("@LWF_NO"             , obj.LWF_NO);
+                param.Add("@LOGO_NAME"          , obj.LOGO_NAME);
+                param.Add("@LOGO_TYPE"          , obj.LOGO_TYPE);
+                param.Add("@LOGO_PATH"          , obj.LOGO_PATH);
+                param.Add("@LOGO_EXT"           , obj.LOGO_EXT);
+                param.Add("@LOGO_BLOB"          , obj.LOGO_BLOB);
+
                 param.Add("@DESCRIPTION"        , obj.DESCRIPTION);
                 param.Add("@CREATED_BY"         , -1);
                 param.Add("@CREATED_DATE"       , DateTime.Now);
@@ -220,6 +226,11 @@ namespace HREmroll.Repository
                 param.Add("@DOMAIN_NAME", obj.DOMAIN_NAME);
                 param.Add("@COMPANY_CODE", obj.COMPANY_CODE);
                 param.Add("@LWF_NO", obj.LWF_NO);
+                param.Add("@LOGO_NAME", obj.LOGO_NAME);
+                param.Add("@LOGO_TYPE", obj.LOGO_TYPE);
+                param.Add("@LOGO_PATH", obj.LOGO_PATH);
+                param.Add("@LOGO_EXT", obj.LOGO_EXT);
+                param.Add("@LOGO_BLOB", obj.LOGO_BLOB);
                 param.Add("@DESCRIPTION", obj.DESCRIPTION);
                 //param.Add("@CREATED_BY", -1);
                 //param.Add("@CREATED_DATE", DateTime.Now);
