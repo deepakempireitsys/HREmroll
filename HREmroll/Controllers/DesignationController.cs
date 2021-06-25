@@ -52,23 +52,33 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                //obj.BRANCH_NAME = "Default";
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                DesignationRepository objRepo = new DesignationRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
+                    //obj.BRANCH_NAME = "Default";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    DesignationRepository objRepo = new DesignationRepository(_configuration);
 
-                objRepo.AddDesignation(obj);
+                    objRepo.AddDesignation(obj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAllDesignation");
+                    return RedirectToAction("GetAllDesignation");
+                }
+                else
+                {
+                    HREmroll.Repository.BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
                 // return View("GetAllDepartments");
             }
             catch

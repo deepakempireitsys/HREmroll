@@ -1,0 +1,51 @@
+﻿@model IEnumerable<HREmroll.Models.SubBranch>
+@{
+    ViewData["Title"] = "GetAllSubBranch";
+}
+
+<span> @Html.ActionLink("Add New Sub Branch", "AddSubBranch") </span>
+<span>@Html.ActionLink("InActive Sub Branch", "GetInActiveSubBranch")</span>
+
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
+    <tr>
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.SUB_BRANCH_NAME) </th>
+        <th>@Html.DisplayNameFor(model => model.SUB_BRANCH_CODE) </th>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION) </th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
+        <th>@Html.DisplayName("Edit / Delete")</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.SUB_BRANCH_ID)
+<tr>
+
+    <td>@Html.DisplayFor(model => item.CMP_ID)</td>
+    <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
+    <td>@Html.DisplayFor(model => item.BRANCH_NAME)</td>
+    <td>@Html.DisplayFor(model => item.SUB_BRANCH_NAME) </td>
+    <td>@Html.DisplayFor(model => item.SUB_BRANCH_CODE) </td>
+    <td>@Html.DisplayFor(model => item.DESCRIPTION) </td>
+    <td>@Html.DisplayFor(model => item.CREATED_BY)</td>
+    <td>@Html.DisplayFor(model => item.CREATED_DATE)</td>
+    <td>@Html.DisplayFor(model => item.MODIFIED_BY)</td>
+    <td>@Html.DisplayFor(model => item.MODIFIED_DATE)</td>
+    <td>@Html.DisplayFor(model => item.ISACTIVE)</td>
+
+    <td>
+        @Html.ActionLink("Edit", "EditSubBranch", new { id = item.SUB_BRANCH_ID})
+        @Html.ActionLink("Delete", "DeleteSubBranch", new { id = item.SUB_BRANCH_ID}, new { onclick = "return confirm('Are sure wants to Inactive?');" })
+    </td>
+</tr>
+
+    }
+
+</table>
+
