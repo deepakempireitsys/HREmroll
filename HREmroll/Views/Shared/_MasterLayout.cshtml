@@ -4,8 +4,9 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    <link href="~/Content/bootstrap.css" rel="stylesheet" />
-    <link href="~/Content/bootstrap-theme.css" rel="stylesheet" />
+    @*<link href="~/Content/bootstrap.css" rel="stylesheet" />*@
+    @*<link href="~/lib/bootstrap/dist/css/bootstrap.css" rel="stylesheet" />*@
+    @*<link href="~/Content/bootstrap-theme.css" rel="stylesheet" />*@
     <style>
         #nav {
             list-style: none inside;
@@ -19,14 +20,13 @@
                 position: relative;
                 float: left;
                 background: #222;
-               
             }
 
                 #nav li a {
                     display: block;
                     padding: 8px;
                     text-decoration: none;
-                    width: 142px;
+                    width: 200px;
                     line-height: 35px;
                     color: #ffffff;
                     background: gray;
@@ -44,7 +44,6 @@
                 padding: 0;
                 left: 0;
                 display: none;
-               
             }
 
             #nav li:hover ul ul {
@@ -57,14 +56,9 @@
 
             #nav li li:hover ul {
                 display: block;
-             
                 margin-left: 200px;
-              
                 margin-top: -35px;
-             
             }
- 
-        
     </style>
 </head>
 <body>
@@ -75,14 +69,14 @@
         <div class="navbar navbar-inverse navbar-fixed-top">
             <div class="container">
                 @*<div class="navbar-header">
-                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    @Html.ActionLink("HREmroll", "GetAllCompany", "Company", new { area = "" }, new { @class = "navbar-brand" })
-                </div>
-                <br />*@
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        @Html.ActionLink("HREmroll", "GetAllCompany", "Company", new { area = "" }, new { @class = "navbar-brand" })
+                    </div>
+                    <br />*@
                 <div class="navbar-collapse collapse">
                     <nav>
                         <ul id="nav">
@@ -101,6 +95,15 @@
                                     <li>@Html.ActionLink("Grade Master", "GetAllGrades", "Grade")</li>
                                     <li>@Html.ActionLink("Location Master", "GetAllLocations", "Location")</li>
                                     <li>@Html.ActionLink("Project Master", "GetAllProjects", "Project")</li>
+
+
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#">Master 2</a>
+                                <ul>
+
+                                    <li>@Html.ActionLink("Holiday Master", "GetAllHolidays", "Holiday")</li>
                                     <li>@Html.ActionLink("Shift Master", "GetAll", "Shift")</li>
                                     <li>@Html.ActionLink("Bank Master", "Getall", "Bank")</li>
                                     <li>@Html.ActionLink("Country Master", "Getall", "Country")</li>
@@ -108,23 +111,19 @@
                                     <li>@Html.ActionLink("City Master", "Getall", "City")</li>
                                     <li>@Html.ActionLink("Leave Master", "GetAllLeaveDetails", "Leave")</li>
 
-
-
-                                    @*<li>@Html.ActionLink("Create", "Create", "Bank")</li>
-        <li>@Html.ActionLink("Create", "Create", "Bank")</li>*@
-                                </ul> 
+                                </ul>
                             </li>
                             <li>@Html.ActionLink("Contact Us", "Contact", "Contact")</li>
                             <li>@Html.ActionLink("Service", "Service", "Service")</li>
                         </ul>
                     </nav>
-                  
+
                 </div>
             </div>
         </div>
     </header>
 
-  
+
     <br />
     <br />
     <br />
@@ -137,9 +136,10 @@
         <p style=" margin-top: 487px !important;">&copy; @DateTime.Now.Year - My HREmroll Website</p>
     </footer>
 
-    <script src="../Scripts/bootstrap.js"></script>
+    @*<script src="../Scripts/bootstrap.js"></script>
     <script src="~/Scripts/jquery.validate.js"></script>
     <script src="~/Scripts/jquery-3.4.1.js"></script>
-    <script src="~/Scripts/modernizr-2.8.3.js"></script>
+    <script src="~/Scripts/modernizr-2.8.3.js"></script>*@
+
 </body>
 </html>

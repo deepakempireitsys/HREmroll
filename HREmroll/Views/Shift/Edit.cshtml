@@ -4,6 +4,248 @@
 
 }
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/css/inputmask.min.css" />
+
+
+
+<style type="text/css">
+
+    .field-validation-error {
+        color: #ff0000;
+    }
+
+   /* .form-control_halfDay {
+        display: none;
+    }
+
+    .form-control_halfDay1 {
+        display: none;
+    }
+
+    .form-control_halfDay2 {
+        display: none;
+    }*/
+
+    .form-control_halfDay3 {
+        display: none;
+    }
+</style>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+<script src="~/lib/bootstrap/dist/js/bootstrap.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/jquery.validate/1.11.1/jquery.validate.min.js"></script>
+<script src="//ajax.aspnetcdn.com/ajax/mvc/4.0/jquery.validate.unobtrusive.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-browser/0.1.0/jquery.browser.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/bindings/inputmask.binding.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/inputmask.phone.extensions.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.inputmask/3.3.4/inputmask/jquery.inputmask.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.maskedinput/1.4.1/jquery.maskedinput.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function ($) {
+
+        $('.form-time').inputmask("99:99");
+        $('.form-time2').inputmask("99:99");
+        $('.form-time4').inputmask("99:99");
+        $('.form-time5').inputmask("99:99");
+        $('.form-time7').inputmask("99:99");
+        $('.form-time8').inputmask("99:99");
+        $('.form-time10').inputmask("99:99");
+        $('.form-time11').inputmask("99:99");
+        $('.form-control_halfDay').inputmask("99:99");
+        $('.form-control_halfDay1').inputmask("99:99");
+        $('.form-control_halfDay2').inputmask("99:99");
+        $('.form-control_halfDay3').inputmask("99:99");
+
+    });
+
+    debugger;
+    $(function () {
+        $("#HALF_DAY_ON").click(function () {
+            debugger;
+            if ($(this).is(':checked')) {
+                $("#HALF_DAY_OF_WEEK").show();
+                $("#HALF_DAY_MIN_HOURS").show();
+                $("#HALF_DAY_START_TIME").show();
+                $("#HALF_DAY_END_TIME").show();
+                $("#HALF_DAY_DURATION").show();
+                $("#AUTO_SHIFT").show();
+            }
+            else {
+                $("#HALF_DAY_OF_WEEK").hide();
+                $("#HALF_DAY_MIN_HOURS").hide();
+                $("#HALF_DAY_START_TIME").hide();
+                $("#HALF_DAY_END_TIME").hide();
+                $("#HALF_DAY_DURATION").hide();
+                $("#AUTO_SHIFT").hide();
+            }
+        });
+
+    });
+
+
+
+    function validateTime(inputField) {
+        debugger;
+        var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.value);
+
+        if (isValid) {
+            inputField.style.backgroundColor = '#bfa';
+            calculate();
+        } else {
+            inputField.style.backgroundColor = '#fba';
+        }
+
+        return isValid;
+
+
+    }
+
+    function calculate() {
+        debugger;
+        var time1 = $(".form-time").val().split(':'), time2 = $(".form-time2").val().split(':'), time3 = $(".form-time4").val().split(':'), time4 = $(".form-time5").val().split(':');
+        var hours1 = parseInt(time1[0], 10),
+            hours2 = parseInt(time2[0], 10),
+            hours3 = parseInt(time3[0], 10),
+            hours4 = parseInt(time4[0], 10),
+
+            mins1 = parseInt(time1[1], 10),
+            mins2 = parseInt(time2[1], 10);
+        mins3 = parseInt(time3[1], 10);
+        mins4 = parseInt(time4[1], 10);
+        var hours = hours2 - hours1, mins = 0;
+        var hoursbek = hours4 - hours3, minsbrk = 0;
+
+        if (hours < 0) hours = 24 + hours;
+
+        if (mins2 >= mins1) {
+            mins = mins2 - mins1;
+        }
+        else {
+            mins = (mins2 + 60) - mins1;
+            hours--;
+        }
+
+        if (hoursbek < 0) hoursbek = 24 + hoursbek;
+
+        if (mins3 >= mins4) {
+            minsbrk = mins4 - mins3;
+        }
+        else {
+            minsbrk = (mins4 + 60) - mins3;
+            hoursbek--;
+        }
+
+        mins = mins / 60;
+        minsbrk = minsbrk / 60;
+
+        hours += mins;
+        hours = hours.toFixed(2);
+        $(".form-time3").val(hours);
+
+        hoursbek += minsbrk;
+        hoursbek = hoursbek.toFixed(2);
+        $(".form-time6").val(hoursbek);
+
+        var time7 = $(".form-time7").val().split(':'), time8 = $(".form-time8").val().split(':');
+        var hours7 = parseInt(time7[0], 10),
+            hours8 = parseInt(time8[0], 10),
+
+
+            mins7 = parseInt(time7[1], 10),
+            mins8 = parseInt(time8[1], 10);
+
+        var hoursbrk2 = hours8 - hours7, minsbrk2 = 0;
+
+
+        if (hoursbrk2 < 0) hoursbrk2 = 24 + hoursbrk2;
+
+        if (mins8 >= mins7) {
+            minsbrk2 = mins8 - mins7;
+        }
+        else {
+            minsbrk2 = (mins8 + 60) - mins7;
+            hoursbrk2--;
+        }
+
+        minsbrk2 = minsbrk2 / 60;
+
+        hoursbrk2 += minsbrk2;
+        hoursbrk2 = hoursbrk2.toFixed(2);
+        $(".form-time9").val(hoursbrk2);
+
+        var time10 = $(".form-time10").val().split(':'), time11 = $(".form-time11").val().split(':');
+        var hours10 = parseInt(time10[0], 10),
+            hours11 = parseInt(time11[0], 10),
+
+
+            mins10 = parseInt(time10[1], 10),
+            mins11 = parseInt(time11[1], 10);
+
+        var hoursbrk3 = hours11 - hours10, minsbrk3 = 0;
+
+
+        if (hoursbrk3 < 0) hoursbrk3 = 24 + hoursbrk3;
+
+        if (mins11 >= mins10) {
+            hoursbrk3 = mins11 - mins10;
+        }
+        else {
+            minsbrk3 = (mins11 + 60) - mins10;
+            hoursbrk3--;
+        }
+
+        minsbrk3 = minsbrk3 / 60;
+
+        hoursbrk3 += minsbrk3;
+        hoursbrk3 = hoursbrk3.toFixed(2);
+        $(".form-time12").val(hoursbrk3);
+
+
+
+        var time13 = $(".form-control_halfDay1").val().split(':'), time14 = $(".form-control_halfDay2").val().split(':');
+        var hours13 = parseInt(time13[0], 10),
+            hours14 = parseInt(time14[0], 10),
+
+
+            mins13 = parseInt(time13[1], 10),
+            mins14 = parseInt(time14[1], 10);
+
+        var hoursbrk4 = hours14 - hours13, minsbrk4 = 0;
+
+
+        if (hoursbrk4 < 0) hoursbrk4 = 24 + hoursbrk4;
+
+        if (mins14 >= mins13) {
+            hoursbrk4 = mins14 - mins13;
+        }
+        else {
+            minsbrk4 = (mins14 + 60) - mins13;
+            hoursbrk4--;
+        }
+
+        minsbrk4 = minsbrk4 / 60;
+
+        hoursbrk4 += minsbrk4;
+        hoursbrk4 = hoursbrk4.toFixed(2);
+        $(".form-control_halfDay3").val(hoursbrk4);
+
+
+    }
+
+    $('SHIFT_END_TIME').keyup(function ($) {
+        var starttime;
+        var endtime;
+        var result;
+        starttime = moment($('SHIFT_START_TIME').val(), "HH:mm");
+        endtime = moment($('SHIFT_END_TIME').val(), "HH:mm");
+        var duration = moment.duration(endtime.diff(starttime));
+        result = moment(duration, "HH:mm");
+        alert(result);
+        $('SHIFT_DURATION').val(result);
+    });
+</script>
+
 @using (@Html.BeginForm())
 {@Html.AntiForgeryToken()
 
@@ -21,7 +263,7 @@
 
 
     @Html.HiddenFor(model => model.SHIFT_ID)
-    
+
 
     @*<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3" align="center">*@
     <table class="table" cellpadding="3" align="center">
@@ -124,13 +366,13 @@
         <tr>
             <td>  </td>
             <td> @Html.LabelFor(model => model.SHIFT_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.SHIFT_START_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.SHIFT_START_TIME, new { htmlAttributes = new { @class = "form-time", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.SHIFT_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.SHIFT_END_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.SHIFT_END_TIME, new { htmlAttributes = new { @class = "form-time2", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.SHIFT_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.SHIFT_DURATION, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.SHIFT_DURATION, new { htmlAttributes = new { @class = "form-time3",} }) </td>
             <td>  </td>
         </tr>
 
@@ -161,13 +403,13 @@
         <tr>
             <td> @Html.LabelFor(model => model.BREAK1, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.CheckBoxFor(model => model.BREAK1, new { htmlAttributes = new { @class = "form-control" } }) </td>
             <td>  @Html.LabelFor(model => model.BREAK1_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK1_START_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK1_START_TIME, new { htmlAttributes = new { @class = "form-time4", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK1_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK1_END_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK1_END_TIME, new { htmlAttributes = new { @class = "form-time5", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK1_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK1_DURATION, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK1_DURATION, new { htmlAttributes = new { @class = "form-time6" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -198,13 +440,13 @@
         <tr>
             <td> @Html.LabelFor(model => model.BREAK2, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK2, new { htmlAttributes = new { @class = "form-control" } })</td>
             <td> @Html.LabelFor(model => model.BREAK2_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK2_START_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK2_START_TIME, new { htmlAttributes = new { @class = "form-time7", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK2_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK2_END_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK2_END_TIME, new { htmlAttributes = new { @class = "form-time8", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK2_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK2_DURATION, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK2_DURATION, new { htmlAttributes = new { @class = "form-time9" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -234,13 +476,13 @@
         <tr>
             <td> @Html.LabelFor(model => model.BREAK3, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK3, new { htmlAttributes = new { @class = "form-control" } }) </td>
             <td> @Html.LabelFor(model => model.BREAK3_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK3_START_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK3_START_TIME, new { htmlAttributes = new { @class = "form-time10", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK3_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK3_END_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK3_END_TIME, new { htmlAttributes = new { @class = "form-time11", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK3_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK3_DURATION, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK3_DURATION, new { htmlAttributes = new { @class = "form-time12" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -268,15 +510,15 @@
             <td>  </td>
         </tr>
         <tr>
-            <td> @Html.LabelFor(model => model.HALF_DAY_ON, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.HALF_DAY_ON, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.LabelFor(model => model.HALF_DAY_ON, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.CheckBoxFor(model => model.HALF_DAY_ON, new { htmlAttributes = new { @class = "form-control" } }) </td>
             <td>  </td>
             <td>  </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_OF_WEEK, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_OF_WEEK, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_OF_WEEK, new { htmlAttributes = new { @class = "form-control_halfDay" } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_MIN_HOURS, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_MIN_HOURS, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_MIN_HOURS, new { htmlAttributes = new { @class = "form-control_halfDay" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -295,10 +537,10 @@
         <tr>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_START_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_START_TIME, new { htmlAttributes = new { @class = "form-control_halfDay1", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_END_TIME, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_END_TIME, new { htmlAttributes = new { @class = "form-control_halfDay2", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
             <td> @Html.EditorFor(model => model.HALF_DAY_DURATION, new { htmlAttributes = new { @class = "form-control" } }) </td>
@@ -337,10 +579,10 @@
             <td>  </td>
 
             <td> @Html.LabelFor(model => model.AUTO_SHIFT, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.AUTO_SHIFT, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.AUTO_SHIFT, new { htmlAttributes = new { @class = "form-control_halfDay6" } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.ISACTIVE, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.ISACTIVE, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.ISACTIVE, new { htmlAttributes = new { @class = "form-control_halfDay6" } }) </td>
             <td>  </td>
             <td>  </td>
             <td>  </td>
@@ -352,7 +594,7 @@
             <td> @Html.ValidationMessageFor(model => model.AUTO_SHIFT, "", new { @class = "text-danger" }) </td>
             <td>  </td>
             <td colspan="2"> @Html.ValidationMessageFor(model => model.ISACTIVE, "", new { @class = "text-danger" })  </td>
-            
+
             <td>  </td>
             <td>  </td>
             <td>  </td>
