@@ -9,7 +9,9 @@ using HREmroll.Repository;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Session;
 using Microsoft.AspNetCore.Http;
+using System.IO;
 using HREmroll.Globals;
+using Microsoft.AspNetCore.Hosting;
 
 namespace HREmroll.Controllers
 {
@@ -17,12 +19,14 @@ namespace HREmroll.Controllers
     {
 
         private readonly IConfiguration _configuration;
+        private IWebHostEnvironment _env;
 
 
-        public CompanyController(IConfiguration configuration)
+        public CompanyController(IConfiguration configuration, IWebHostEnvironment env)
         {
             //_logger = logger;
             _configuration = configuration;
+            _env = env;
         }
 
         public ActionResult CompanyLogin()
@@ -87,32 +91,70 @@ namespace HREmroll.Controllers
 
         // POST: Branch/AddBranch      
         [HttpPost]
-        public IActionResult AddCompany(Company obj)
+        public IActionResult AddCompany(Company obj, IFormFile files  )
         {
             try
             {
+                //var objfiles = new CmpLogo();
+                if (files != null)
+                {
+                    if (files.Length > 0)
+                    {
+                        //Getting FileName
+                        var fileName = Path.GetFileName(files.FileName);
+                        //Getting file Extension
+                        var fileExtension = Path.GetExtension(fileName);
+                        // concatenating  FileName + FileExtension
+                        var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+                        
+                        obj.LOGO_NAME = newFileName;
+                        obj.LOGO_TYPE = fileExtension;
+                        obj.LOGO_EXT = fileExtension;
+                        
+                        var webRoot = _env.WebRootPath;
+                        obj.LOGO_PATH = System.IO.Path.Combine(webRoot, "IMAGES");
+                        
+                        
+
+                        using (var target = new MemoryStream())
+                        {
+                            files.CopyTo(target);
+                            obj.LOGO_BLOB = target.ToArray();
+                            
+                        }
+                        using (var fileStream = new FileStream(Path.Combine(obj.LOGO_PATH,newFileName), FileMode.Create))
+                        {
+                            files.CopyTo(fileStream);
+                        }
+
+                        
+
+                    }
+                }
+
+
                 obj.CREATED_BY = 1;
                 obj.CREATED_DATE = DateTime.Now;
                 obj.MODIFIED_BY = 1;
                 obj.MODIFIED_DATE = DateTime.Now;
 
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
+                
                 CompanyRepository objRepo = new CompanyRepository(_configuration);
 
                 objRepo.AddCompany(obj);
-
+                //CmpLogoRepository logoRepo = new CmpLogoRepository(_configuration);
+                //logoRepo.AddCmpLogo(objfiles);
                 ViewBag.Message = "Records added successfully.";
 
                 return RedirectToAction("GetAllCompany");
                 // return View("GetAllCompany");
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
+                throw ex;
+                
             }
         }
 
