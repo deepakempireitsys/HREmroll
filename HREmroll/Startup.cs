@@ -62,6 +62,8 @@ namespace HREmroll
 
             app.UseHttpsRedirection();
 
+            app.UseStaticFiles();
+
             app.UseRouting();
 
             app.UseSession();

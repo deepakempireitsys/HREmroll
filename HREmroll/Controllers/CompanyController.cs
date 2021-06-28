@@ -113,9 +113,10 @@ namespace HREmroll.Controllers
                         obj.LOGO_EXT = fileExtension;
                         
                         var webRoot = _env.WebRootPath;
-                        obj.LOGO_PATH = System.IO.Path.Combine(webRoot, "IMAGES");
-                        
-                        
+                        //obj.LOGO_PATH = System.IO.Path.Combine(webRoot, "IMAGES") + @"\" + obj.LOGO_NAME;
+                        obj.LOGO_PATH = @"\IMAGES\" + obj.LOGO_NAME;
+
+
 
                         using (var target = new MemoryStream())
                         {
@@ -123,7 +124,9 @@ namespace HREmroll.Controllers
                             obj.LOGO_BLOB = target.ToArray();
                             
                         }
-                        using (var fileStream = new FileStream(Path.Combine(obj.LOGO_PATH,newFileName), FileMode.Create))
+                        //using (var fileStream = new FileStream(Path.Combine(obj.LOGO_PATH,newFileName), FileMode.Create))
+                        //using (var fileStream = new FileStream(obj.LOGO_PATH, FileMode.Create))
+                        using (var fileStream = new FileStream(System.IO.Path.Combine(webRoot, "IMAGES") + @"\" + obj.LOGO_NAME, FileMode.Create))
                         {
                             files.CopyTo(fileStream);
                         }
@@ -168,16 +171,68 @@ namespace HREmroll.Controllers
             //HREmroll.Repository.BranchRepository br = new BranchRepository();
 
             //ViewBag.data = br.GetAllBranchs();
+
+            string imreBase64Data = Convert.ToBase64String(obj.LOGO_BLOB);
+            string imgDataURL = string.Format("data:image/png;base64,{0}", imreBase64Data);
+            //Passing image data in viewbag to view  
+            ViewBag.ImageData = imgDataURL;
             return View(obj);
 
         }
 
         // POST:Update the details into database      
         [HttpPost]
-        public IActionResult EditCompany(Company obj)
+        public IActionResult EditCompany(Company obj, IFormFile files)
         {
             try
             {
+                //var objfiles = new CmpLogo();
+                if (files != null)
+                {
+                    if (files.Length > 0)
+                    {
+                        //Getting FileName
+                        var fileName = Path.GetFileName(files.FileName);
+                        //Getting file Extension
+                        var fileExtension = Path.GetExtension(fileName);
+                        // concatenating  FileName + FileExtension
+                        var newFileName = String.Concat(Convert.ToString(Guid.NewGuid()), fileExtension);
+
+
+                        obj.LOGO_NAME = newFileName;
+                        obj.LOGO_TYPE = fileExtension;
+                        obj.LOGO_EXT = fileExtension;
+
+                        var webRoot = _env.WebRootPath;
+                        //obj.LOGO_PATH = System.IO.Path.Combine(webRoot, "IMAGES") + @"\" + obj.LOGO_NAME;
+                        obj.LOGO_PATH = @"\IMAGES\" + obj.LOGO_NAME;
+
+
+
+                        using (var target = new MemoryStream())
+                        {
+                            files.CopyTo(target);
+                            obj.LOGO_BLOB = target.ToArray();
+
+                        }
+                        //using (var fileStream = new FileStream(Path.Combine(obj.LOGO_PATH,newFileName), FileMode.Create))
+                        //using (var fileStream = new FileStream(obj.LOGO_PATH, FileMode.Create))
+                        using (var fileStream = new FileStream(System.IO.Path.Combine(webRoot, "IMAGES") + @"\" + obj.LOGO_NAME, FileMode.Create))
+                        {
+                            files.CopyTo(fileStream);
+                        }
+
+
+
+                    }
+                }
+
+
+                //obj.CREATED_BY = 1;
+                //obj.CREATED_DATE = DateTime.Now;
+                obj.MODIFIED_BY = 1;
+                obj.MODIFIED_DATE = DateTime.Now;
+
                 CompanyRepository objRepo = new CompanyRepository(_configuration);
 
                 objRepo.UpdateCompany(obj);

@@ -8,11 +8,11 @@ namespace HREmroll.Models
 {
     public class Bank
     {
-        public int BANK_ID{ get; set; }
+        public long BANK_ID{ get; set; }
         [Required(ErrorMessage ="Compony Id is reqired")]
         [Display(Name = "Compony  ID")]
 
-        public int CMP_ID { get; set; }
+        public long CMP_ID { get; set; }
 
         [Required(ErrorMessage ="Enter Bank Name")]
         [Display(Name = "Bank Name")]
@@ -56,13 +56,13 @@ namespace HREmroll.Models
         public bool DEFAULT_BANK { get; set; }
         [Required]
         [Display(Name = "Created By")]
-        public int CREATED_BY { get; set; }
+        public long CREATED_BY { get; set; }
         [Required]
         [Display(Name = "Created date")]
         public DateTime CREATED_DATE { get; set; }
         [Required]
         [Display(Name = "Modified By")]
-        public int MODIFIED_BY { get; set; }
+        public long MODIFIED_BY { get; set; }
         [Required]
         [Display(Name = "Modified date")]
         public DateTime MODIFIED_DATE { get; set; }

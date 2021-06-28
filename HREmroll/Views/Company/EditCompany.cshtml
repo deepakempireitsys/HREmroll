@@ -4,8 +4,27 @@
 
 }
 
-@using (@Html.BeginForm())
+@using (@Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
 {@Html.AntiForgeryToken()
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+@*<script src="~/js/jquery.min.js"></script>*@
+
+<script type="text/javascript">
+    function readURL(input) {
+        debugger;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#logo2').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
 
 <div class="form-horizontal">
     <h4> Edit Company </h4>
@@ -25,22 +44,29 @@
         @Html.HiddenFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
         @Html.HiddenFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control" } })
         @Html.HiddenFor(model => model.CREATED_DATE, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.LOGO_NAME, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.LOGO_TYPE, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.LOGO_EXT, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.LOGO_PATH, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.LOGO_BLOB, new { htmlAttributes = new { @class = "form-control" } })
+
+
         <table cellpadding="5">
             @*
-            <table border="1" style="border-collapse: collapse;" cellpadding="5">
-            <tr> <td></td>
-                <td>
-                    @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
-                </td>
-                <td>
-                </td>
-            </tr>
+                <table border="1" style="border-collapse: collapse;" cellpadding="5">
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             *@
 
 
@@ -317,6 +343,34 @@
             <tr>
                 <td></td>
                 <td>
+                    @*@Html.LabelFor(model => model.DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })*@
+                    Upload Company Logo
+                </td>
+                <td colspan=" 4">
+                    @*@Html.TextAreaFor(model => model.DESCRIPTION, 5, 50, new { htmlAttributes = new { @class = "form-control" } })*@
+                    <input class="form-control" name="files" type="file" onchange="readURL(this);" />
+                </td>
+                <td>
+                    @*@Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })*@
+                </td>
+                @* alt=model.LOGO_PATH *@
+                <td>
+                    @*<img id="logo" src="@Url.Content(Model.LOGO_PATH)" height=100 width=200 />*@
+                    @*<img src="@ViewBag.ImageData">*@
+                    <img id="logo1" src="@ViewBag.ImageData" object-fit="cover" height=200  />
+                    <img id="logo2" src="@("/IMAGES/"+Model.LOGO_NAME)" height=200 object-fit="cover"  />
+                    @*<img src="@Url.Content(Model.LOGO_NAME)" alt="Sample Image" style="height:50px;width:100px;" />*@
+
+
+
+                    @*<img src="~/Content/img/@Url.Content(model => model.LOGO_PATH)" style="height:50px;width:100px;" />*@
+                </td>
+            </tr>
+
+
+            <tr>
+                <td></td>
+                <td>
                     @Html.LabelFor(model => model.DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td colspan=" 4">
@@ -329,62 +383,62 @@
                 </td>
             </tr>
             @*
-            <tr> <td></td>
-                <td>
-                    @Html.LabelFor(model => model.CREATED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.CREATED_BY, "", new { @class = "text-danger" })
-                </td>
-                <td>
-                </td>
-            </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.CREATED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CREATED_BY, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
 
 
-            <tr> <td></td>
-                <td>
-                    @Html.LabelFor(model => model.CREATED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.CREATED_DATE, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.CREATED_DATE, "", new { @class = "text-danger" })
-                </td>
-                <td>
-                </td>
-            </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.CREATED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CREATED_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CREATED_DATE, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
 
-            <tr> <td></td>
-                <td>
-                    @Html.LabelFor(model => model.MODIFIED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.MODIFIED_BY, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.MODIFIED_BY, "", new { @class = "text-danger" })
-                </td>
-                <td>
-                </td>
-            </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.MODIFIED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.MODIFIED_BY, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.MODIFIED_BY, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
 
-            <tr> <td></td>
-                <td>
-                    @Html.LabelFor(model => model.MODIFIED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
-                </td>
-                <td>
-                    @Html.EditorFor(model => model.MODIFIED_DATE, new { htmlAttributes = new { @class = "form-control" } })
-                </td>
-                <td>
-                    @Html.ValidationMessageFor(model => model.MODIFIED_DATE, "", new { @class = "text-danger" })
-                </td>
-                <td>
-                </td>
-            </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.MODIFIED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.MODIFIED_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.MODIFIED_DATE, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             *@
 
 
@@ -463,13 +517,13 @@
 
 
         @*
-        <div class="form-group">
-            @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.BRANCH_ID, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.BRANCH_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
         *@
 
 
@@ -497,11 +551,11 @@
         </div>
 
         @*<div class = "form-group" >
-            @Html.LabelFor(model => model.Address, htmlAttributes: new{@class = "control-label col-md-2"})
-        <div class = "col-md-10" >
-            @Html.EditorFor(model => model.Address, new{htmlAttributes = new{@class = "form-control"}})
-            @Html.ValidationMessageFor(model => model.Address, "", new {@class = "text-danger"})
-            </div>*@
+                @Html.LabelFor(model => model.Address, htmlAttributes: new{@class = "control-label col-md-2"})
+            <div class = "col-md-10" >
+                @Html.EditorFor(model => model.Address, new{htmlAttributes = new{@class = "form-control"}})
+                @Html.ValidationMessageFor(model => model.Address, "", new {@class = "text-danger"})
+                </div>*@
 </div>
 
 <div class="form-group">
@@ -518,8 +572,8 @@
 
 
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
 
-</script>
+    </script>*@

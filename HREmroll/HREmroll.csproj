@@ -21,12 +21,28 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\IMAGES\logo-06.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="Images\d6edffea-82a3-46a1-93bc-dbfe1144c2d0.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Images\d6edffea-82a3-46a1-93bc-dbfe1144c2d0.png">
+      <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+      <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <None Include="Views\1Home\Index.cshtml" />
     <None Include="Views\1Home\Privacy.cshtml" />
     <None Include="Views\Shared\_Layout.cshtml" />
     <None Include="Views\Shared\_ValidationScriptsPartial.cshtml" />
     <None Include="Views\1_ViewImports.cshtml" />
     <None Include="Views\_ViewStart1.cshtml" />
+    <None Include="wwwroot\IMAGES\logo-06.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,10 +51,6 @@
     <PackageReference Include="jQuery.InputMask" Version="5.0.6" />
     <PackageReference Include="Moment.js" Version="2.29.1" />
     <PackageReference Include="System.Data.SqlClient" Version="4.8.2" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="wwwroot\IMAGES\" />
   </ItemGroup>
 
 </Project>
