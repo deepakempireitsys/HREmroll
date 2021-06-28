@@ -4,8 +4,26 @@
 
 }
 
-@using (@Html.BeginForm( FormMethod.Post, new { enctype = "multipart/form-data" }))
+@using (@Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
 {@Html.AntiForgeryToken()
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+@*<script src="~/js/jquery.min.js"></script>*@
+
+<script type="text/javascript">
+    function readURL(input) {
+        debugger;
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#logo').attr('src', e.target.result);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+</script>
+
 
 <div class="form-horizontal">
     <h4> Add Company </h4>
@@ -24,20 +42,20 @@
 
         <table cellpadding="5">
             @*
-        <table border="1" style="border-collapse: collapse;" cellpadding="5">
-        <tr> <td></td>
-            <td>
-                @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
+                <table border="1" style="border-collapse: collapse;" cellpadding="5">
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             *@
 
 
@@ -319,12 +337,19 @@
                 </td>
                 <td colspan=" 4">
                     @*@Html.TextAreaFor(model => model.DESCRIPTION, 5, 50, new { htmlAttributes = new { @class = "form-control" } })*@
-                    <input class="form-control" name="files" type="file" />
+                    <input class="form-control" name="files" type="file" onchange="readURL(this);" />
                 </td>
                 <td>
                     @*@Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })*@
                 </td>
                 <td>
+                    @*<img src="E:\HARSH\WORK\PROJECTS UNDER WORK\HREmroll\HREmroll\logo-06.jpg" />*@
+                    @*<img id="logo" src="#" onerror="this.src='/logo-06.jpg'" alt="" height=100 width=200 />*@
+                    @*<img id="logo" src="/logo-06.jpg" alt="" height=100 width=200 />*@
+                    @*<img id="logo"  src="../logo-06.jpg" height=100 width=200/>*@
+                    @*<img src="/IMAGES/logo-06.jpg" alt="Image" style="height: 80px;" />*@
+                    @*<img src="E:\HARSH\WORK\PROJECTS UNDER WORK\HREmroll\HREmroll\Images\logo-06.jpg" />*@
+                    <img id="logo" height=100 width=200 src="~/IMAGES/logo-06.jpg" />
                 </td>
             </tr>
 
@@ -343,62 +368,62 @@
                 </td>
             </tr>
             @*
-        <tr> <td></td>
-            <td>
-                @Html.LabelFor(model => model.CREATED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.EditorFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.CREATED_BY, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.CREATED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CREATED_BY, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
 
 
-        <tr> <td></td>
-            <td>
-                @Html.LabelFor(model => model.CREATED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.EditorFor(model => model.CREATED_DATE, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.CREATED_DATE, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.CREATED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.CREATED_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.CREATED_DATE, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
 
-        <tr> <td></td>
-            <td>
-                @Html.LabelFor(model => model.MODIFIED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.EditorFor(model => model.MODIFIED_BY, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.MODIFIED_BY, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.MODIFIED_BY, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.MODIFIED_BY, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.MODIFIED_BY, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
 
-        <tr> <td></td>
-            <td>
-                @Html.LabelFor(model => model.MODIFIED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
-            </td>
-            <td>
-                @Html.EditorFor(model => model.MODIFIED_DATE, new { htmlAttributes = new { @class = "form-control" } })
-            </td>
-            <td>
-                @Html.ValidationMessageFor(model => model.MODIFIED_DATE, "", new { @class = "text-danger" })
-            </td>
-            <td>
-            </td>
-        </tr>
+                <tr> <td></td>
+                    <td>
+                        @Html.LabelFor(model => model.MODIFIED_DATE, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.EditorFor(model => model.MODIFIED_DATE, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.ValidationMessageFor(model => model.MODIFIED_DATE, "", new { @class = "text-danger" })
+                    </td>
+                    <td>
+                    </td>
+                </tr>
             *@
 
 
@@ -518,22 +543,22 @@
                 </div>*@
 </div>
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
 
-            </div>
-        </div>
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10" style="color:green">
-
-
-            </div>
-        </div>
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10" style="color:green">
 
 
-        }
-        <script src="~/Scripts/jquery-1.10.2.min.js"></script>
-        <script src="~/Scripts/jquery.validate.min.js"></script>
-        <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+    </div>
+</div>
 
-        </script>
+
+}
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+
+</script>*@
