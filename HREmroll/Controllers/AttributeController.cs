@@ -49,23 +49,20 @@ namespace HREmroll.Controllers
         {
             try
             {
+               
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
 
+                    AttributeRepository objRepo = new AttributeRepository(_configuration);
 
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
+                    objRepo.AddAtteribute(obj);
 
-                AttributeRepository objRepo = new AttributeRepository(_configuration);
+                    ViewBag.Message = "Records added successfully.";
 
-                objRepo.AddAtteribute(obj);
-
-                ViewBag.Message = "Records added successfully.";
-
-                return RedirectToAction("GetAll");
-
-
-
+                    return RedirectToAction("GetAll");
+               
             }
             catch
             {

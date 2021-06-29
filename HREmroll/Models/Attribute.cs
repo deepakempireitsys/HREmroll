@@ -13,13 +13,13 @@ namespace HREmroll.Models
         public long CMP_ID { get; set; }
 
         [Display(Name = "Attribute name")]
-        [Required]
+        [Required(ErrorMessage ="Enter Attribute Name")]
         public string ATTRIBUTE_NAME { get; set; }
 
         [Display(Name = "Description")]
-        [Required]
+        [Required(ErrorMessage = "Enter Description")]
         public string DESCRIPTION { get; set; }
-        [Required]
+
         [Display(Name = "Created By")]
         public int CREATED_BY { get; set; }
         [Required]

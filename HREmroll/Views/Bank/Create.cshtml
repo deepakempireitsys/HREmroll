@@ -4,6 +4,14 @@
 
 }
 
+
+@*<script src="../lib/jquery/dist/jquery.js"></script>*@
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.17.0/jquery.validate.js"></script>
+
+
 @using (@Html.BeginForm())
 {@Html.AntiForgeryToken()
 
@@ -83,7 +91,7 @@
                 @Html.EditorFor(model => model.ACCOUNT_NUMBER, new { htmlAttributes = new { @class = "form-control" } })
             </td>
             <td>
-                @Html.ValidationMessageFor(model => model.ACCOUNT_NUMBER, "tyftftf", new { @class = "text-danger" })
+                @Html.ValidationMessageFor(model => model.ACCOUNT_NUMBER, "", new { @class = "text-danger", @maxlength = "10", @type = "number" })
             </td>
             <td>
             </td>
@@ -132,7 +140,7 @@
                 @Html.LabelFor(model => model.BANK_IFSC_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.EditorFor(model => model.BANK_IFSC_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.TextBoxFor(model => model.BANK_IFSC_CODE, new { htmlAttributes = new { @class = "form-control", @name = "ifsc", @id = "input-ifsc" } })
             </td>
             <td>
                 @Html.ValidationMessageFor(model => model.BANK_IFSC_CODE, "", new { @class = "text-danger" })
@@ -151,7 +159,7 @@
             </td>
             <td>
             </td>
-         
+
         </tr>
 
 
@@ -272,10 +280,13 @@
     </div>
 </div>
 
-
+@*@section Scripts 
+{
+    @scripts.Render("~/bundles/jqueryval")
+}*@
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>*@
+@*<script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
 
-</script> 
+    </script>*@
