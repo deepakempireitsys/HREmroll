@@ -1,0 +1,104 @@
+﻿
+@model IEnumerable<HREmroll.Models.Employee>
+@{
+    ViewData["Title"] = "GetAllEmployeeDetails";
+}
+
+
+<p>
+    <span>@Html.ActionLink("Add New Employee", "AddEmployee")</span>
+
+    <span>@Html.ActionLink("Active Employee", "GetActiveEmployees")</span>
+
+    <span>@Html.ActionLink("InActive Employee", "GetInActiveEmployees")</span>
+
+</p>
+
+<table class="table"  border="1" style="border-collapse: collapse;" cellpadding="3">
+
+    <tr>
+
+
+        <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.INITIALS)</th>
+        <th>@Html.DisplayNameFor(model => model.FIRST_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.MIDDLE_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.LAST_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.EMPLOYEE_CODE_PREFIX)</th>
+        <th>@Html.DisplayNameFor(model => model.EMPLOYEE_CODE)</th>
+        <th>@Html.DisplayNameFor(model => model.BRANCH_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.GRADE_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.DATE_OF_JOINING)</th>
+        <th>@Html.DisplayNameFor(model => model.SHIFT_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.DESIGNATION_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.DEPARTMENT_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.REPORTING_MANAGER_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.ENROLL_OR_PUNCH_CODE)</th>
+        <th>@Html.DisplayNameFor(model => model.CTC)</th>
+        <th>@Html.DisplayNameFor(model => model.SUB_BRANCH_ID)</th>
+        <th>@Html.DisplayNameFor(model => model.GROSS_SALARY)</th>
+        <th>@Html.DisplayNameFor(model => model.BASIC_SALARY)</th>
+        <th>@Html.DisplayNameFor(model => model.EMP_PHOTO)</th>
+        <th>@Html.DisplayNameFor(model => model.EMP_SIGNATURE)</th>
+        <th>@Html.DisplayNameFor(model => model.IS_LATE_MARK)</th>
+        <th>@Html.DisplayNameFor(model => model.IS_EARLY_MARK)</th>
+        <th>@Html.DisplayNameFor(model => model.IS_FIX_SALARY)</th>
+        <th>@Html.DisplayNameFor(model => model.IS_PART_TIME)</th>
+        <th>@Html.DisplayNameFor(model => model.IS_PROBATION)</th>
+        <th>@Html.DisplayNameFor(model => model.IS_TRAINEE)</th>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
+        <th>@Html.DisplayName("Edit / Delete")</th>
+
+    </tr>
+    @foreach (var item in Model)
+    {
+        @Html.HiddenFor(model => item.EMP_ID)
+<tr>
+    <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.INITIALS)</th>
+    <th>@Html.DisplayNameFor(model => model.FIRST_NAME)</th>
+    <th>@Html.DisplayNameFor(model => model.MIDDLE_NAME)</th>
+    <th>@Html.DisplayNameFor(model => model.LAST_NAME)</th>
+    <th>@Html.DisplayNameFor(model => model.EMPLOYEE_CODE_PREFIX)</th>
+    <th>@Html.DisplayNameFor(model => model.EMPLOYEE_CODE)</th>
+    <th>@Html.DisplayNameFor(model => model.BRANCH_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.GRADE_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.DATE_OF_JOINING)</th>
+    <th>@Html.DisplayNameFor(model => model.SHIFT_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.DESIGNATION_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.DEPARTMENT_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.REPORTING_MANAGER_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.ENROLL_OR_PUNCH_CODE)</th>
+    <th>@Html.DisplayNameFor(model => model.CTC)</th>
+    <th>@Html.DisplayNameFor(model => model.SUB_BRANCH_ID)</th>
+    <th>@Html.DisplayNameFor(model => model.GROSS_SALARY)</th>
+    <th>@Html.DisplayNameFor(model => model.BASIC_SALARY)</th>
+    <th>@Html.DisplayNameFor(model => model.EMP_PHOTO)</th>
+    <th>@Html.DisplayNameFor(model => model.EMP_SIGNATURE)</th>
+    <th>@Html.DisplayNameFor(model => model.IS_LATE_MARK)</th>
+    <th>@Html.DisplayNameFor(model => model.IS_EARLY_MARK)</th>
+    <th>@Html.DisplayNameFor(model => model.IS_FIX_SALARY)</th>
+    <th>@Html.DisplayNameFor(model => model.IS_PART_TIME)</th>
+    <th>@Html.DisplayNameFor(model => model.IS_PROBATION)</th>
+    <th>@Html.DisplayNameFor(model => model.IS_TRAINEE)</th>
+    <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</th>
+    <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
+    <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
+    <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
+    <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</th>
+    <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
+
+    <td>
+        @Html.ActionLink("Edit", "EditEmployee", new { id = item.EMP_ID })
+        | @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.EMP_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+    </td>
+</tr>
+
+    }
+
+</table> 

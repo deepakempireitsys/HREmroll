@@ -1,0 +1,455 @@
+﻿
+
+@model HREmroll.Models.Employee
+@{
+    ViewData["Title"] = "AddEmployee";
+    Layout = "~/Views/Shared/_MasterLayout.cshtml";
+
+}
+
+@using (@Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
+{@Html.AntiForgeryToken()
+
+<div class="form-horizontal" style="margin:auto;">
+    <h2> Add Company </h2>
+</div>
+
+
+
+<div>
+    @Html.ActionLink("Back to Employee List", "GetAllEmployee")
+
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+    <p>
+    <p>
+
+        <table cellpadding="5">
+
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
+                </td>
+
+                <td>
+                </td>
+                <td>
+                    <label type="file" name="file" id="file" style="width: 100%;">Image </label><br/>
+                </td>
+                <td>
+                    <input type="file" name="file" id="file" style="width: 100%;"/> <br/>
+                </td>
+               
+                <td>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.FIRST_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.MIDDLE_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.MIDDLE_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.MIDDLE_NAME, "", new { @class = "text-danger" })
+                </td>
+               
+                <td>
+                    @Html.LabelFor(model => model.LAST_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.EMPLOYEE_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.EMPLOYEE_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.EMPLOYEE_CODE, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                @*<td>
+                    @Html.LabelFor(model => model.SUB_BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.SUB_BRANCH_ID, new SelectList(ViewBag.SBranch, "SUB_BRANCH_ID", "SUB_BRANCH_NAME"), "Select Sub Branch")
+                </td>
+
+                <td>
+                </td>*@
+            </tr>
+
+
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.GRADE_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.GRADE_ID, new SelectList(ViewBag.Grade, "GRADE_ID", "GRADE_NAME"), "Select Grade")
+                </td>
+
+                <td>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DATE_OF_JOINING, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.DATE_OF_JOINING, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.DATE_OF_JOINING, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.SHIFT_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.SHIFT_ID, new SelectList(ViewBag.Shift, "SHIFT_ID", "SHIFT_NAME"), "Select Shift")
+                </td>
+
+                <td>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DESIGNATION_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.DESIGNATION_ID, new SelectList(ViewBag.Designation, "DESIGNATION_ID", "DESIGNATION_NAME"), "Select Designation")
+                </td>
+
+                <td>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.DEPARTMENT_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.DEPARTMENT_ID, new SelectList(ViewBag.Departments, "DEPARTMENT_ID", "DEPARTMENT_NAME"), "Select Department")
+                </td>
+
+                <td>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DEPARTMENT_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.DEPARTMENT_ID, new SelectList(ViewBag.Departments, "DEPARTMENT_ID", "DEPARTMENT_NAME"), "Select Branch")
+                </td>
+
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.CATEGORY_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.CATEGORY_ID, new SelectList(ViewBag.Category, "CATEGORY_ID", "CATEGORY_NAME"), "Select Category")
+                </td>
+
+                <td>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.CATEGORY_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.CATEGORY_ID, new SelectList(ViewBag.Category, "CATEGORY_ID", "CATEGORY_NAME"), "Select Category")
+                </td>
+
+                <td>
+                </td>
+                @*<td>
+                        @Html.LabelFor(model => model.REPORTING_MANAGER_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                    </td>
+                    <td>
+                        @Html.DropDownListFor(model => model.REPORTING_MANAGER_ID, new SelectList(ViewBag.Data, "REPORTING_MANAGER_ID", "DESIGNATION_NAME"), "Select Branch")
+                    </td>
+
+                    <td>
+                    </td>*@
+            </tr>
+
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.ENROLL_OR_PUNCH_CODE, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.ENROLL_OR_PUNCH_CODE, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.ENROLL_OR_PUNCH_CODE, "", new { @class = "text-danger" })
+                </td>
+               
+                <td>
+                    @Html.LabelFor(model => model.CTC, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.CTC, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.CTC, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <td>
+                    @Html.LabelFor(model => model.SUB_BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.SUB_BRANCH_ID, new SelectList(ViewBag.SBranch, "SUB_BRANCH_ID", "SUB_BRANCH_NAME"), "Select Sub Branch")
+                </td>
+
+                <td>
+                </td>
+
+                <td>
+                    @Html.LabelFor(model => model.GROSS_SALARY, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.GROSS_SALARY, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.GROSS_SALARY, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+
+                <td>
+                    @Html.LabelFor(model => model.LOGIN_ALIAS, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.LOGIN_ALIAS, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.LOGIN_ALIAS, "", new { @class = "text-danger" })
+                </td>
+                
+                <td>
+                    @Html.LabelFor(model => model.BASIC_SALARY, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.BASIC_SALARY, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.BASIC_SALARY, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+
+                <td>
+                    @*     @Html.LabelFor(model => model.IS_OVER_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK3, new { htmlAttributes = new { @class = "form-control" } })*@
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.IS_LATE_MARK, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_LATE_MARK, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.IS_EARLY_MARK, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_EARLY_MARK, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+
+                @*<td>
+                        @Html.LabelFor(model => model.full_Pf, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK3, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>
+                    <td>
+                        @Html.LabelFor(model => model.PT, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK3, new { htmlAttributes = new { @class = "form-control" } })
+                    </td>*@
+                <td>
+                    @Html.LabelFor(model => model.IS_FIX_SALARY, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_FIX_SALARY, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.IS_PART_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_PART_TIME, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.IS_PROBATION, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_PROBATION, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.IS_TRAINEE, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_TRAINEE, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+            </tr>
+
+
+
+            <tr>
+                @*<td></td>
+                <td>
+                    Upload Company Logo
+                </td>
+                <td colspan=" 4">
+                    <input class="form-control" name="files" type="file" />
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>*@
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                    @Html.LabelFor(model => model.DESCRIPTION, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td colspan=" 4">
+                    @Html.TextAreaFor(model => model.DESCRIPTION, 5, 50, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
+                </td>
+                <td>
+                </td>
+            </tr>
+
+            <tr>
+                <td></td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td></td>
+                <td>
+                </td>
+                <td colspan=" 2">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                </td>
+                <td>
+                </td>
+                <td>
+                </td>
+            </tr>
+        </table>
+
+        @ViewBag.Message
+        <div class="form-group">
+
+            <span>
+
+            </span>
+            <div class="col-md-10">
+
+
+            </div>
+        </div>
+
+
+        <div class="form-group">
+
+            <span>
+
+            </span>
+            <div class="col-md-10">
+
+
+
+
+            </div>
+        </div>
+        <div class="form-group">
+            @Html.HiddenFor(model => model.CMP_ID)
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.CREATED_DATE)
+        </div>
+
+        <div class="form-group">
+            @Html.HiddenFor(model => model.MODIFIED_DATE)
+        </div>
+
+        <div class="form-group">
+
+        </div>
+
+        <div class="form-group">
+
+            <span>
+
+            </span>
+            <div class="col-md-10">
+
+
+            </div>
+        </div>
+
+        <div class="form-group">
+
+
+            <span>
+
+            </span>
+            <div class="col-md-10">
+
+
+            </div>
+        </div>
+
+</div>
+
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10">
+
+    </div>
+</div>
+<div class="form-group">
+    <div class="col-md-offset-2 col-md-10" style="color:green">
+
+
+    </div>
+</div>
+
+
+}
+<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.min.js">
+
+</script>
+
+
