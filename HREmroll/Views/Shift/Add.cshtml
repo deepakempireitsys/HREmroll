@@ -50,9 +50,10 @@
 
 <script type="text/javascript">
     $(document).ready(function ($) {
-     
-        $('.form-time').inputmask("99:99");
+        //debugger;
+        $('.form-time1').inputmask("99:99");
         $('.form-time2').inputmask("99:99");
+        $('.form-time3').inputmask("99:99");
         $('.form-time4').inputmask("99:99");
         $('.form-time5').inputmask("99:99");
         $('.form-time7').inputmask("99:99");
@@ -66,24 +67,31 @@
       
     });
 
-    debugger;
+    //debugger;
     $(function () {
         $("#HALF_DAY_ON").click(function () {
-            debugger;
+            //debugger;
             if ($(this).is(':checked')) {
                 $("#HALF_DAY_OF_WEEK").show();
                 $("#HALF_DAY_MIN_HOURS").show();
-                $("#HALF_DAY_START_TIME").show();
-                $("#HALF_DAY_END_TIME").show();
-                $("#HALF_DAY_DURATION").show();
+                
+                //$("#HALF_DAY_START_TIME").show();
+                //$("#HALF_DAY_END_TIME").show();
+                //$("#HALF_DAY_DURATION").show();
+                $("#half_day_start").show();
+                $("#half_day_end").show();
+                $("#half_day_duration").show();
                 $("#AUTO_SHIFT").show();
             }
             else {
                 $("#HALF_DAY_OF_WEEK").hide();
                 $("#HALF_DAY_MIN_HOURS").hide();
-                $("#HALF_DAY_START_TIME").hide();
-                $("#HALF_DAY_END_TIME").hide();
-                $("#HALF_DAY_DURATION").hide();
+                //$("#HALF_DAY_START_TIME").hide();
+                //$("#HALF_DAY_END_TIME").hide();
+                //$("#HALF_DAY_DURATION").hide();
+                $("#half_day_start").hide();
+                $("#half_day_end").hide();
+                $("#half_day_duration").hide();
                 $("#AUTO_SHIFT").hide();
             }
         });
@@ -93,11 +101,12 @@
    
 
     function validateTime(inputField) {
-        debugger;
+        //debugger;
         var isValid = /^([0-1]?[0-9]|2[0-4]):([0-5][0-9])(:[0-5][0-9])?$/.test(inputField.value);
 
         if (isValid) {
             inputField.style.backgroundColor = '#bfa';
+            //debugger;
             calculate();
         } else {
             inputField.style.backgroundColor = '#fba';
@@ -109,133 +118,159 @@
     }
 
     function calculate() {
-        debugger;
-        var time1 = $(".form-time").val().split(':'), time2 = $(".form-time2").val().split(':'), time3 = $(".form-time4").val().split(':'), time4 = $(".form-time5").val().split(':');
-        var hours1 = parseInt(time1[0], 10),
-            hours2 = parseInt(time2[0], 10),
-            hours3 = parseInt(time3[0], 10),
-            hours4 = parseInt(time4[0], 10),
-
-            mins1 = parseInt(time1[1], 10),
-            mins2 = parseInt(time2[1], 10);
-            mins3 = parseInt(time3[1], 10);
-            mins4 = parseInt(time4[1], 10);
-        var hours = hours2 - hours1, mins = 0;
-        var hoursbek = hours4 - hours3, minsbrk = 0;
-
-        if (hours < 0) hours = 24 + hours;
-
-        if (mins2 >= mins1) {
-            mins = mins2 - mins1;
-        }
-        else {
-            mins = (mins2 + 60) - mins1;
-            hours--;
-        }
-
-        if (hoursbek < 0) hoursbek = 24 + hoursbek;
-
-        if (mins3 >= mins4) {
-            minsbrk = mins4 - mins3;
-        }
-        else {
-            minsbrk = (mins4 + 60) - mins3;
-            hoursbek--;
-        }
-
-        mins = mins / 60;
-        minsbrk = minsbrk / 60;
-
-        hours += mins;
-        hours = hours.toFixed(2);
-        $(".form-time3").val(hours);
-
-        hoursbek += minsbrk;
-        hoursbek = hoursbek.toFixed(2);
-        $(".form-time6").val(hoursbek);
-
-        var time7 = $(".form-time7").val().split(':'), time8 = $(".form-time8").val().split(':');
-        var hours7 = parseInt(time7[0], 10),
-            hours8 = parseInt(time8[0], 10),
-          
-
-            mins7 = parseInt(time7[1], 10),
-            mins8 = parseInt(time8[1], 10);
+         //Start Script Calculation.
        
-        var hoursbrk2 = hours8 - hours7, minsbrk2 = 0;
-       
+        
+        //debugger;
+        
+        var start_1 = $("#shift_start").val().split(':');
+        var end_1 = $("#shift_end").val().split(':');
 
-        if (hoursbrk2 < 0) hoursbrk2 = 24 + hoursbrk2;
+        
+        var start_hours_1 = parseInt(start_1[0], 10) * 3600,
+            end_hours_1 = parseInt(end_1[0], 10) * 3600;
 
-        if (mins8 >= mins7) {
-            minsbrk2 = mins8 - mins7;
-        }
-        else {
-            minsbrk2 = (mins8 + 60) - mins7;
-            hoursbrk2--;
-        }
+        var start_min_1 = parseInt(start_1[1] , 10) * 60;
+        var end_min_1 = parseInt(end_1[1], 10) * 60;
+        var hr24 = 24 * 3600;
+        var tot_start_1 = start_hours_1 + start_min_1;
+        var tot_end_1 = end_hours_1 + end_min_1;
+        var tot_duration_1 = tot_end_1 - tot_start_1;
+        if (tot_duration_1 < 0)
+            tot_duration_1 = tot_duration_1 + hr24;
 
-        minsbrk2 = minsbrk2 / 60;
-      
-        hoursbrk2 += minsbrk2;
-        hoursbrk2 = hoursbrk2.toFixed(2);
-        $(".form-time9").val(hoursbrk2);
+        var duration_hour_1 = parseInt(tot_duration_1 / 3600);
+        if (duration_hour_1 < 10)
+            duration_hour_1 = '0' + duration_hour_1;
 
-        var time10 = $(".form-time10").val().split(':'), time11 = $(".form-time11").val().split(':');
-        var hours10 = parseInt(time10[0], 10),
-            hours11 = parseInt(time11[0], 10),
+        var duration_min_1 = parseInt((tot_duration_1 % 3600) / 60);
+        if (duration_min_1 < 10)
+            duration_min_1 = '0' + duration_min_1;
+        //var result1 = toString(hr3) + ':' + toString(min3);
+        var result1 = duration_hour_1 + ':' + duration_min_1;
+        $("#shift_duration").val(result1);
 
+        //ENd Script Calculation.
 
-            mins10 = parseInt(time10[1], 10),
-            mins11 = parseInt(time11[1], 10);
+        //debugger;
 
-        var hoursbrk3 = hours11 - hours10, minsbrk3 = 0;
-
-
-        if (hoursbrk3 < 0) hoursbrk3 = 24 + hoursbrk3;
-
-        if (mins11 >= mins10) {
-            hoursbrk3 = mins11 - mins10;
-        }
-        else {
-            minsbrk3 = (mins11 + 60) - mins10;
-            hoursbrk3--;
-        }
-
-        minsbrk3 = minsbrk3 / 60;
-
-        hoursbrk3 += minsbrk3;
-        hoursbrk3 = hoursbrk3.toFixed(2);
-        $(".form-time12").val(hoursbrk3);
+        var start_2 = $("#break1_start").val().split(':');
+        var end_2 = $("#break1_end").val().split(':');
 
 
+        var start_hours_2 = parseInt(start_2[0], 10) * 3600,
+            end_hours_2 = parseInt(end_2[0], 10) * 3600;
 
-        var time13 = $(".form-control_halfDay1").val().split(':'), time14 = $(".form-control_halfDay2").val().split(':');
-        var hours13 = parseInt(time13[0], 10),
-            hours14 = parseInt(time14[0], 10),
+        var start_min_2 = parseInt(start_2[1], 10) * 60;
+        var end_min_2 = parseInt(end_2[1], 10) * 60;
+        
+        var tot_start_2 = start_hours_2 + start_min_2;
+        var tot_end_2 = end_hours_2 + end_min_2;
+        var tot_duration_2 = tot_end_2 - tot_start_2;
+        if (tot_duration_2 < 0)
+            tot_duration_2 = tot_duration_2 + hr24;
+
+        var duration_hour_2 = parseInt(tot_duration_2 / 3600);
+        if (duration_hour_2 < 10)
+            duration_hour_2 = '0' + duration_hour_2;
+        var duration_min_2 = parseInt((tot_duration_2 % 3600) / 60);
+        if (duration_min_2 < 10)
+            duration_min_2 = '0' + duration_min_2;
+        var result2 = duration_hour_2 + ':' + duration_min_2;
+        $("#break1_duration").val(result2);
 
 
-            mins13 = parseInt(time13[1], 10),
-            mins14 = parseInt(time14[1], 10);
+        //ENd Script Calculation.
 
-        var hoursbrk4 = hours14 - hours13, minsbrk4 = 0;
+        //debugger;
+
+        var start_3 = $("#break2_start").val().split(':');
+        var end_3 = $("#break2_end").val().split(':');
 
 
-        if (hoursbrk4 < 0) hoursbrk4 = 24 + hoursbrk4;
+        var start_hours_3 = parseInt(start_3[0], 10) * 3600,
+            end_hours_3 = parseInt(end_3[0], 10) * 3600;
 
-        if (mins14 >= mins13) {
-            hoursbrk4 = mins14 - mins13;
-        }
-        else {
-            minsbrk4 = (mins14 + 60) - mins13;
-            hoursbrk4--;
-        }
+        var start_min_3 = parseInt(start_3[1], 10) * 60;
+        var end_min_3 = parseInt(end_3[1], 10) * 60;
 
-        minsbrk4 = minsbrk4 / 60;
+        var tot_start_3 = start_hours_3 + start_min_3;
+        var tot_end_3 = end_hours_3 + end_min_3;
+        var tot_duration_3 = tot_end_3 - tot_start_3;
+        if (tot_duration_3 < 0)
+            tot_duration_3 = tot_duration_3 + hr24;
 
-        hoursbrk4 += minsbrk4;
-        hoursbrk4 = hoursbrk4.toFixed(2);
-        $(".form-control_halfDay3").val(hoursbrk4);
+        var duration_hour_3 = parseInt(tot_duration_3 / 3600);
+        if (duration_hour_3 < 10)
+            duration_hour_3 = '0' + duration_hour_3;
+        var duration_min_3 = parseInt((tot_duration_3 % 3600) / 60);
+        if (duration_min_3 < 10)
+            duration_min_3 = '0' + duration_min_3;
+
+        var result3 = duration_hour_3 + ':' + duration_min_3;
+        $("#break2_duration").val(result3);
+
+
+        //ENd Script Calculation.
+
+        //debugger;
+
+        var start_4 = $("#break3_start").val().split(':');
+        var end_4 = $("#break3_end").val().split(':');
+
+
+        var start_hours_4 = parseInt(start_4[0], 10) * 3600,
+            end_hours_4 = parseInt(end_4[0], 10) * 3600;
+
+        var start_min_4 = parseInt(start_4[1], 10) * 60;
+        var end_min_4 = parseInt(end_4[1], 10) * 60;
+
+        var tot_start_4 = start_hours_4 + start_min_4;
+        var tot_end_4 = end_hours_4 + end_min_4;
+        var tot_duration_4 = tot_end_4 - tot_start_4;
+        if (tot_duration_4 < 0)
+            tot_duration_4 = tot_duration_4 + hr24;
+
+        var duration_hour_4 = parseInt(tot_duration_4 / 3600);
+        if (duration_hour_4 < 10)
+            duration_hour_4 = '0' + duration_hour_4;
+        var duration_min_4 = parseInt((tot_duration_4 % 3600) / 60);
+        if (duration_min_4 < 10)
+            duration_min_4 = '0' + duration_min_4;
+
+        var result4 = duration_hour_4 + ':' + duration_min_4;
+        $("#break3_duration").val(result4);
+
+
+        //ENd Script Calculation.
+
+        //debugger;
+
+        var start_5 = $("#half_day_start").val().split(':');
+        var end_5 = $("#half_day_end").val().split(':');
+
+
+        var start_hours_5 = parseInt(start_5[0], 10) * 3600,
+            end_hours_5 = parseInt(end_5[0], 10) * 3600;
+
+        var start_min_5 = parseInt(start_5[1], 10) * 60;
+        var end_min_5 = parseInt(end_5[1], 10) * 60;
+
+        var tot_start_5 = start_hours_5 + start_min_5;
+        var tot_end_5 = end_hours_5 + end_min_5;
+        var tot_duration_5 = tot_end_5 - tot_start_5;
+        if (tot_duration_5 < 0)
+            tot_duration_5 = tot_duration_5 + hr24;
+
+        var duration_hour_5 = parseInt(tot_duration_5 / 3600);
+        if (duration_hour_5 < 10)
+            duration_hour_5 = '0' + duration_hour_5;
+        var duration_min_5 = parseInt((tot_duration_5 % 3600) / 60);
+        if (duration_min_5 < 10)
+            duration_min_5 = '0' + duration_min_5;
+
+        var result5 = duration_hour_5 + ':' + duration_min_5;
+        $("#half_day_duration").val(result5);
 
      
     }
@@ -372,14 +407,14 @@
         <tr>
             <td>  </td>
             <td> @Html.LabelFor(model => model.SHIFT_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.SHIFT_START_TIME, new { htmlAttributes = new { @class = "form-time", @id = "shift_start", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.SHIFT_START_TIME, new { htmlAttributes = new { @id = "shift_start", @class = "form-time1",  @onchange = "validateTime(this); " } }) </td>
 
             <td>  </td>
             <td> @Html.LabelFor(model => model.SHIFT_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.SHIFT_END_TIME, new { htmlAttributes = new { @class = "form-time2", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.SHIFT_END_TIME, new { htmlAttributes = new { @id = "shift_end", @class = "form-time2", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.SHIFT_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.SHIFT_DURATION, new { htmlAttributes = new { @class = "form-time3" } }) </td>
+            <td> @Html.EditorFor(model => model.SHIFT_DURATION, new { htmlAttributes = new { @id = "shift_duration", @class = "form-time3" } }) </td>
             <td>  </td>
         </tr>
 
@@ -413,13 +448,13 @@
         
 
             <td>  @Html.LabelFor(model => model.BREAK1_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK1_START_TIME, new { htmlAttributes = new { @class = "form-time4", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK1_START_TIME, new { htmlAttributes = new { @id = "break1_start", @class = "form-time4", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK1_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK1_END_TIME, new { htmlAttributes = new { @class = "form-time5", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK1_END_TIME, new { htmlAttributes = new { @id = "break1_end", @class = "form-time5", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK1_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK1_DURATION, new { htmlAttributes = new { @class = "form-time6" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK1_DURATION, new { htmlAttributes = new { @id = "break1_duration", @class = "form-time6" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -450,13 +485,13 @@
         <tr>
             <td> @Html.LabelFor(model => model.BREAK2, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK2, new { htmlAttributes = new { @class = "form-control" } })</td>
             <td> @Html.LabelFor(model => model.BREAK2_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK2_START_TIME, new { htmlAttributes = new { @class = "form-time7", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK2_START_TIME, new { htmlAttributes = new { @id = "break2_start", @class = "form-time7", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK2_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK2_END_TIME, new { htmlAttributes = new { @class = "form-time8", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK2_END_TIME, new { htmlAttributes = new { @id = "break2_end", @class = "form-time8", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK2_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK2_DURATION, new { htmlAttributes = new { @class = "form-time9" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK2_DURATION, new { htmlAttributes = new { @id = "break2_duration", @class = "form-time9" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -486,13 +521,13 @@
         <tr>
             <td> @Html.LabelFor(model => model.BREAK3, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.BREAK3, new { htmlAttributes = new { @class = "form-control" } }) </td>
             <td> @Html.LabelFor(model => model.BREAK3_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK3_START_TIME, new { htmlAttributes = new { @class = "form-time10", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK3_START_TIME, new { htmlAttributes = new { @id = "break3_start", @class = "form-time10", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK3_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK3_END_TIME, new { htmlAttributes = new { @class = "form-time11", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK3_END_TIME, new { htmlAttributes = new { @id = "break3_end", @class = "form-time11", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.BREAK3_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.BREAK3_DURATION, new { htmlAttributes = new { @class = "form-time12" } }) </td>
+            <td> @Html.EditorFor(model => model.BREAK3_DURATION, new { htmlAttributes = new { @id = "break3_duration", @class = "form-time12" } }) </td>
             <td>  </td>
         </tr>
         <tr>
@@ -547,13 +582,13 @@
         <tr>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_START_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_START_TIME, new { htmlAttributes = new { @class = "form-control_halfDay1", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_START_TIME, new { htmlAttributes = new { @id = "half_day_start", @class = "form-control_halfDay1", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_END_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_END_TIME, new { htmlAttributes = new { @class = "form-control_halfDay2", @onchange = "validateTime(this); " } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_END_TIME, new { htmlAttributes = new { @id = "half_day_end", @class = "form-control_halfDay2", @onchange = "validateTime(this); " } }) </td>
             <td>  </td>
             <td> @Html.LabelFor(model => model.HALF_DAY_DURATION, htmlAttributes: new { @class = "control-label col-md-2" }) </td>
-            <td> @Html.EditorFor(model => model.HALF_DAY_DURATION, new { htmlAttributes = new { @class = "form-control" } }) </td>
+            <td> @Html.EditorFor(model => model.HALF_DAY_DURATION, new { htmlAttributes = new { @id = "half_day_duration", @class = "form-control" } }) </td>
             <td>  </td>
         </tr>
 
@@ -750,8 +785,8 @@
 
 
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
+@*<script src="~/Scripts/jquery-1.10.2.min.js"></script>
 <script src="~/Scripts/jquery.validate.min.js"></script>
 <script src="~/Scripts/jquery.validate.unobtrusive.min.js">
 
-</script> 
+</script>*@ 
