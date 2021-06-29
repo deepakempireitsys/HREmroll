@@ -14,36 +14,45 @@ namespace HREmroll.Models
 
         public long CMP_ID { get; set; }
 
-        [Required]
+        [Required(ErrorMessage ="Enter Bank Name")]
         [Display(Name = "Bank Name")]
         public string BANK_Name { get; set; }
 
         [Required(ErrorMessage = "Bank Code is reqired")]
         [Display(Name = "Bank Code")]
+        public int BANK_CODE { get; set; }
 
-        public long BANK_CODE { get; set; }
-        [Required]
-        [Display(Name = "Bank Name")]
+        [Required(ErrorMessage ="Enter Branch Name")]
+        [Display(Name = "Branch Name")]
         public string BRANCH_NAME { get; set; }
-        [Required]
-        [Display(Name = "Account Number")]
+
+        [Display(Name ="Account Number")]
+        [Required(ErrorMessage = "Please enter the AccountNo")]
+        //[MaxLength(18)]
+        //[MinLength(6)]
+        //[RegularExpression("^[1-9][0-9]*$", ErrorMessage = "Account number must be numeric")]
         [RegularExpression(@"^\d{9,18}$", ErrorMessage = "Invalid Account Number, you need to enter minimum 9 and maximum 18 digits")]
+
         public string ACCOUNT_NUMBER { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="Enter Bank Address")]
         [Display(Name = "Adderess")]
         public string ADDERESS { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="Enter Bank City")]
         [Display(Name = "City")]
         public string CITY { get; set; }
-        [Required]
+
+        [Required(ErrorMessage ="Enter BSR Code")]
         [Display(Name = "Bank BSR Code")]
-        public long BANK_BSR_CODE { get; set; }
-        [Required]
+        public int BANK_BSR_CODE { get; set; }
+
+        [Required(ErrorMessage ="Enter Bank IFSC Code")]
         [Display(Name = "Bank IFSC Code")]
-        //[RegularExpression(@"^[A-Za-z]{4}\d{7}$", ErrorMessage = "Invalid IFC Code.")]
+        [RegularExpression(@"^[A-Z|a-z]{4}[0][a-zA-Z0-9]{6}$", ErrorMessage = "Invalid IFC Code.")]
         public string BANK_IFSC_CODE { get; set; }
-        [Required]
-        [Display(Name = "Defoult Bank")]
+        //[Required]
+        //[Display(Name = "Defoult Bank")]
         public bool DEFAULT_BANK { get; set; }
         [Required]
         [Display(Name = "Created By")]
