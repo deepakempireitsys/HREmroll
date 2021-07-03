@@ -12,13 +12,11 @@
 </div>
 
 
-
-
 <div>
     @Html.ActionLink("Back to  City", "GetAll")
 
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
 
 
@@ -32,7 +30,9 @@
             <td>
                 @Html.DropDownListFor(model => model.COUNTRY_ID, new SelectList(ViewBag.Data, "COUNTRY_ID", "COUNTRY_NAME"), "Select Country")
             </td>
-
+            <td>
+                @Html.ValidationMessageFor(model => model.COUNTRY_ID, "", new { @class = "text-danger" })
+            </td>
             <td>
             </td>
         </tr>
@@ -44,7 +44,9 @@
             <td>
                 @Html.DropDownListFor(model => model.STATE_ID, new SelectList(ViewBag.Data1, "STATE_ID", "STATE_NAME"), "Select State")
             </td>
-
+            <td>
+                @Html.ValidationMessageFor(model => model.STATE_ID, "", new { @class = "text-danger" })
+            </td>
             <td>
             </td>
         </tr>

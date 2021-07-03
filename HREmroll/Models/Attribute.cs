@@ -10,6 +10,8 @@ namespace HREmroll.Models
     {
 
         public int ATTRIBUTE_ID { get; set; }
+
+        [Display(Name = "Company Id")]
         public long CMP_ID { get; set; }
 
         [Display(Name = "Attribute name")]

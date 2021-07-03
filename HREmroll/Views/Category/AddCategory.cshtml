@@ -30,10 +30,9 @@
             <td>
                 @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
             </td>
+
             <td>
                 @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
-            </td>
-            <td>
             </td>
         </tr>
         <tr>
@@ -45,6 +44,7 @@
             </td>
 
             <td>
+                @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
         <tr>
@@ -93,6 +93,7 @@
             </td>
         </tr>
     </table>
+
 
     @ViewBag.Message
     <div class="form-group">
