@@ -52,6 +52,10 @@ namespace HREmroll.Controllers
         {
             try
             {
+                ModelState.Remove("DESIGNATION_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+
                 if (ModelState.IsValid)
                 {
                     obj.CREATED_BY = 1;
@@ -102,11 +106,21 @@ namespace HREmroll.Controllers
         {
             try
             {
-                DesignationRepository objRepo = new DesignationRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    DesignationRepository objRepo = new DesignationRepository(_configuration);
 
-                objRepo.UpdateDesignation(obj);
+                    objRepo.UpdateDesignation(obj);
 
-                return RedirectToAction("GetAllDesignation");
+                    return RedirectToAction("GetAllDesignation");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {

@@ -17,7 +17,7 @@
     @Html.ActionLink("Back to Holiday List", "GetAllHolidays")
 
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
 
 
@@ -67,8 +67,8 @@
             <td>
                 @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
             </td>
-
             <td>
+                @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
 

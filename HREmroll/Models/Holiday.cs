@@ -10,15 +10,17 @@ namespace HREmroll.Models
     {
         [Display(Name = "Holiday ID")]
         public long Holiday_ID { get; set; }        // NUMERIC(18, 0) null,
-
+        
         [Display(Name = "CMP ID")]
-        public long CMP_ID { get; set; }
+        [Required(ErrorMessage ="Enter Company Id")]
+        public Nullable<long> CMP_ID { get; set; }
 
         [Display(Name = "BRANCH NAME")]
-        [Required, Range(1, int.MaxValue, ErrorMessage = "Must Select Branch")]
-        public long BRANCH_ID { get; set; }
+        [Required(ErrorMessage = "Must Select Branch")]
+        public Nullable<long> BRANCH_ID { get; set; }
 
         [Display(Name = "HOLIDAY NAME")]
+        [Required(ErrorMessage = "Enter Hollyday Name")]
         public string HOLIDAY_NAME { get; set; }
 
         [Display(Name = "BRANCH")]
@@ -29,15 +31,18 @@ namespace HREmroll.Models
 
         // NUMERIC(18,0) null,
         [Display(Name = "STATE NAME")]
-        public string STATE { get; set; }   
+        //[Required(ErrorMessage ="Enter State Name")]
+        public string STATE { get; set; }    
         
         [Display(Name = "MULTIPLE HOLIDAY")]
         public bool MULTIPLE_HOLIDAY { get; set; }
 
         [Display(Name = "HOLIDAY DATE")]
+        [Required(ErrorMessage ="Enter Hollyday Date")]
         public string HOLIDAY_DATE { get; set; }
 
         [Display(Name = "MESSAGE TEXT")]
+        [Required(ErrorMessage ="Enter Massage text")]
         public string MESSAGE_TEXT { get; set; }
 
         [Display(Name = "HOLIDAY CATEGORY")]

@@ -12,9 +12,11 @@ namespace HREmroll.Models
         public long DEPARTMENT_ID { get; set; }        // NUMERIC(18, 0) null,
 
         [Display(Name = "CMP ID")]
+        [Required(ErrorMessage = "Enter Company ID")]
         public long CMP_ID { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "COMPANY")]
+        
         public string CMP_NAME { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "BR ID")]
@@ -25,6 +27,7 @@ namespace HREmroll.Models
         public string BRANCH_NAME { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "NAME")]
+        [Required(ErrorMessage = "Enter Department Name")]
         public string DEPARTMENT_NAME { get; set; }  // VARCHAR(500) null,  
 
         [Display(Name = "DESCRIPTION")]

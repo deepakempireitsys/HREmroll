@@ -18,9 +18,6 @@
     @Html.ActionLink("Back to  City", "GetAll")
 
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
 
 
     <table>
@@ -32,7 +29,9 @@
             <td>
                 @Html.DropDownListFor(model => model.COUNTRY_ID, new SelectList(ViewBag.Data, "COUNTRY_ID", "COUNTRY_NAME"), "Select Country")
             </td>
-
+            <td>
+                @Html.ValidationMessageFor(Model => Model.COUNTRY_ID, "", new { @class = "text-danger" })
+            </td>
             <td>
             </td>
         </tr>
@@ -44,7 +43,9 @@
             <td>
                 @Html.DropDownListFor(model => model.STATE_ID, new SelectList(ViewBag.Data1, "STATE_ID", "STATE_NAME"), "Select State")
             </td>
-
+            <td>
+                @Html.ValidationMessageFor(Model => Model.STATE_ID, "", new { @class = "text-danger" })
+            </td>
             <td>
             </td>
         </tr>
@@ -121,9 +122,9 @@
 
         </div>
     </div>
-    <div class="form-group">
-        @Html.HiddenFor(model => model.STATE_ID)
-    </div>
+    @*<div class="form-group">
+            @Html.HiddenFor(model => model.STATE_ID)
+        </div>*@
 
 
     <div class="form-group">
@@ -187,8 +188,6 @@
 
 
 }
-<script src="~/Scripts/jquery-1.10.2.min.js"></script>
-<script src="~/Scripts/jquery.validate.min.js"></script>
-<script src="~/Scripts/jquery.validate.unobtrusive.min.js">
 
-</script> 
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>

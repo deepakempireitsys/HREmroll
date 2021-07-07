@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,17 +46,27 @@ namespace HREmroll.Controllers
         {
             try
             {
-                //if (ModelState.IsValid)
-                //{
+                //ModelState.Remove("CMP_NAME");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+                if (ModelState.IsValid)
+                {
+
                     BranchRepository objRepo = new BranchRepository(_configuration);
                     objRepo.AddBranch(obj);
 
                     ViewBag.Message = "Records added successfully.";
 
-                //}
-                return RedirectToAction("GetAllBranchs");
-                //return View();
+
+                    return RedirectToAction("GetAllBranchs");
+                    //return View();
+                }
+                else
+                {
+                    return View();
+                }
             }
+
             catch
             {
                 return View();

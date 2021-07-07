@@ -36,8 +36,6 @@ namespace HREmroll.Controllers
         }
         public ActionResult Create()
         {
-
-
             CompanyRepository objRepo = new CompanyRepository(_configuration);
             ViewBag.data = objRepo.GetAllCompanys();
             return View();
@@ -49,7 +47,13 @@ namespace HREmroll.Controllers
         {
             try
             {
-               
+              
+                ModelState.Remove("ATTRIBUTE_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+                if (ModelState.IsValid)
+                {
+
                     obj.CREATED_BY = 1;
                     obj.CREATED_DATE = DateTime.Now;
                     obj.MODIFIED_BY = 1;
@@ -62,7 +66,16 @@ namespace HREmroll.Controllers
                     ViewBag.Message = "Records added successfully.";
 
                     return RedirectToAction("GetAll");
-               
+                }
+                else
+                {
+
+
+                    CompanyRepository objRepo = new CompanyRepository(_configuration);
+                    ViewBag.data = objRepo.GetAllCompanys(); 
+                    return View();
+
+                }
             }
             catch
             {
@@ -96,8 +109,10 @@ namespace HREmroll.Controllers
                 }
                 else
                 {
-                    return View();
 
+                    CompanyRepository objRepo = new CompanyRepository(_configuration);
+                    ViewBag.data = objRepo.GetAllCompanys();
+                    return View();
                 }
             }
             catch

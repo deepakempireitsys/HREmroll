@@ -37,7 +37,10 @@ namespace HREmroll.Controllers
         {
             try
             {
-               
+                if (ModelState.IsValid)
+                {
+
+
                     CountryRepository objRepo = new CountryRepository(_configuration);
 
                     objRepo.AddCountry(obj);
@@ -45,7 +48,11 @@ namespace HREmroll.Controllers
                     ViewBag.Message = "Records added successfully.";
 
                     return RedirectToAction("GetAll");
-               
+                }
+                else
+                {
+                    return View();
+                }
 
 
             }

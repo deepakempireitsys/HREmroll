@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -61,24 +60,38 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                obj.BRANCH_NAME = "Default";
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                CategoryRepository objRepo = new CategoryRepository(_configuration);
+                
+                ModelState.Remove("CATEGORY_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
+                    obj.BRANCH_NAME = "Default";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    CategoryRepository objRepo = new CategoryRepository(_configuration);
 
-                objRepo.AddCategory(obj);
+                    objRepo.AddCategory(obj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAllCategorys");
-                // return View("GetAllCategorys");
+                    return RedirectToAction("GetAllCategorys");
+                    // return View("GetAllCategorys");
+                }
+                else
+                {
+                    HREmroll.Repository.BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
@@ -106,11 +119,21 @@ namespace HREmroll.Controllers
         {
             try
             {
-                CategoryRepository objRepo = new CategoryRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    CategoryRepository objRepo = new CategoryRepository(_configuration);
 
-                objRepo.UpdateCategory(obj);
+                    objRepo.UpdateCategory(obj);
 
-                return RedirectToAction("GetAllCategorys");
+                    return RedirectToAction("GetAllCategorys");
+                }
+                else
+                {
+                    HREmroll.Repository.BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {

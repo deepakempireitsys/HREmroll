@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data;
@@ -18,16 +17,20 @@ namespace HREmroll.Models
         public long CMP_ID { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "COMPANY")]
-        public string CMP_NAME { get; set; }           // NUMERIC(18,0) null,
+        public string CMP_NAME { get; set; }
+
+        [Required(ErrorMessage = "Emter Branch Name")]
         [Display(Name = "BRANCH")]
         public string BRANCH_NAME { get; set; }
 
-        [Required(ErrorMessage = "Description is required.")]
+        [Display(Name ="DESCRIPTION")]
         public string DESCRIPTION { get; set; }
         
         public long CREATED_BY { get; set; }
+
         public DateTime CREATED_DATE { get; set; }
         public long MODIFIED_BY { get; set; }
+
         public DateTime MODIFIED_DATE { get; set; }
         public bool ISACTIVE { get; set; }
 

@@ -67,7 +67,6 @@ namespace HREmroll
             app.UseRouting();
 
             app.UseSession();
-            app.UseStaticFiles();
 
             //app.UseMvcWithDefaultRoute();
             app.UseAuthorization();
@@ -91,3 +90,4 @@ namespace HREmroll
         }
     }
 }
+

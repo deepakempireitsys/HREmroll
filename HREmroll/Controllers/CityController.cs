@@ -42,21 +42,35 @@ namespace HREmroll.Controllers
         {
             try
             {
+                if (ModelState.IsValid)
+                {
 
-                //obj.BRANCH_NAME = "Default";
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                CityRepository objRepo = new CityRepository(_configuration);
+                    //obj.BRANCH_NAME = "Default";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    
+                    CityRepository objRepo = new CityRepository(_configuration);
+                    
 
-                objRepo.AddCity(obj);
+                    objRepo.AddCity(obj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAll");
-                // return View("GetAllDepartments");
+                    return RedirectToAction("GetAll");
+                    // return View("GetAllDepartments");
+                }
+                else
+                {
+                    CountryRepository objRepo = new CountryRepository(_configuration);
+                    StateRepository objRepo1 = new StateRepository(_configuration);
+
+                    ViewBag.data = objRepo.GetAll();
+                    ViewBag.data1 = objRepo1.Grupbyid();
+                    return View();
+                }
             }
             catch
             {
@@ -82,11 +96,23 @@ namespace HREmroll.Controllers
         {
             try
             {
-                CityRepository objRepo = new CityRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    CityRepository objRepo = new CityRepository(_configuration);
 
-                objRepo.UpdateCity(obj);
+                    objRepo.UpdateCity(obj);
 
-                return RedirectToAction("GetAll");
+                    return RedirectToAction("GetAll");
+                }
+                else
+                {
+                    CountryRepository br = new CountryRepository(_configuration);
+                    StateRepository objRepo1 = new StateRepository(_configuration);
+
+                    ViewBag.data = br.GetAll();
+                    ViewBag.data1 = objRepo1.Grupbyid();
+                    return View();
+                }
             }
             catch
             {

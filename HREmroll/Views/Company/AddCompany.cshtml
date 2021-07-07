@@ -35,10 +35,9 @@
     @Html.ActionLink("Back to Company List", "GetAllCompany")
 
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
-    <p>
-    <p>
+    
 
         <table cellpadding="5">
             @*
@@ -362,7 +361,7 @@
                     @Html.TextAreaFor(model => model.DESCRIPTION, 5, 50, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
-                    @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
+                    @*@Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })*@
                 </td>
                 <td>
                 </td>
