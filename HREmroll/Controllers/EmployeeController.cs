@@ -302,13 +302,12 @@ namespace HREmroll.Controllers
 
         }
 
-        //[System.Web.Mvc.ChildActionOnly]
-        //public IActionResult _EmpPersonalDetails()
+        //public IActionResult EmpDetails()
         //{
         //    return PartialView("_EmpPersonalDetails");
 
 
-      
+        //}
 
 
 
