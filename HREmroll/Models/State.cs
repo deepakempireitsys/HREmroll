@@ -8,11 +8,11 @@ namespace HREmroll.Models
 {
     public class State
     {
-        public int STATE_ID { get; set; }
+        public long STATE_ID { get; set; }
 
         [Required(ErrorMessage ="Plese select any country")]
         [Display(Name ="Country ID")]
-        public int COUNTRY_ID { get; set; }
+        public long COUNTRY_ID { get; set; }
         [Display(Name = "State Name")]
         [Required(ErrorMessage = "Plese enter state name")]
         public string STATE_NAME { get; set; }

@@ -18,6 +18,7 @@ namespace HREmroll.Repository
         public SqlConnection con;
         //To Handle connection related activities
         //
+        public string Connectionstring = "Server=24.13.245.114;Database=Emroll;User Id=sa;password=SUPERSOFTWARE#1";
         public CityRepository(IConfiguration config)
         {
             _dapperAdapter = new DapperAdapter(config);
@@ -165,6 +166,36 @@ namespace HREmroll.Repository
             finally
             {
 
+            }
+        }
+        public DataSet Get_Country()
+        {
+            using (SqlConnection con = new SqlConnection(Connectionstring))
+            {
+                SqlCommand com = new SqlCommand("Select * from EMROLL_COUNTRY_MASTER", con);
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+                return ds;
+            }
+
+
+        }
+
+        //Get all State
+        public DataSet Get_State(string country_id)
+        {
+            using (SqlConnection con = new SqlConnection(Connectionstring))
+            {
+
+                //SqlCommand com = new SqlCommand("Select * from EMROLL_STATE_MASTER where COUNTRY_ID=@COUNTRY_ID", con);
+                SqlCommand com = new SqlCommand("SELECT * FROM EMROLL_STATE_MASTER WHERE COUNTRY_ID=@COUNTRY_ID", con);
+                com.Parameters.AddWithValue("@COUNTRY_ID", country_id);
+                SqlDataAdapter da = new SqlDataAdapter(com);
+                DataSet ds = new DataSet();
+                da.Fill(ds);
+
+                return ds;
             }
         }
     }

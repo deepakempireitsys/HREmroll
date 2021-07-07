@@ -3,6 +3,43 @@
     ViewData["Title"] = "Add City";
 
 }
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+    <script src="~/lib/jquery/dist/jquery-1.10.2.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#Country").change(function () {
+                var id = $(this).val();
+                $("#state").empty();
+                $.get("State_Bind", { COUNTRY_ID: id }, function (data) {
+                    var v = "<option>---Select---</option>";
+
+                    $.each(data, function (Value, Text) {
+                        /*     debugger;*/
+                        v += "<option value=" + Text.text + ">" + Text.value + "</option>";
+                    });
+                    /*$("#state").html(v);*/
+                    $("#state").prop('disabled', false).html(v);
+                    /*debugger;*/
+                });
+            });
+
+            //$("#state").change(function () {
+            //    var id = $(this).val();
+
+            //    $.get("City_Bind", { STATE_ID: id }, function (data) {
+            //        var v = "<option>---Select---</option>";
+            //        $.each(data, function (i, v1) {
+            //            v += "<option value=" + v1.Value + ">" + v1.Text + "</option>";
+            //        });
+            //        $("#city").html(v);
+            //    });
+            //});
+        });
+    </script>
+</head>
+
 
 @using (@Html.BeginForm())
 {@Html.AntiForgeryToken()
@@ -27,7 +64,8 @@
                 @Html.LabelFor(model => model.COUNTRY_ID, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.DropDownListFor(model => model.COUNTRY_ID, new SelectList(ViewBag.Data, "COUNTRY_ID", "COUNTRY_NAME"), "Select Country")
+                @*@Html.DropDownListFor(model => model.COUNTRY_ID, new SelectList(ViewBag.Data, "COUNTRY_ID", "COUNTRY_NAME"), "Select Country")*@
+                @Html.DropDownListFor(model => model.COUNTRY_ID, new SelectList(ViewBag.Country, "Value", "Text"), "Select Country", new { @id = "Country" })
             </td>
             <td>
                 @Html.ValidationMessageFor(Model => Model.COUNTRY_ID, "", new { @class = "text-danger" })
@@ -41,7 +79,8 @@
                 @Html.LabelFor(model => model.STATE_ID, htmlAttributes: new { @class = "control-label col-md-2" })
             </td>
             <td>
-                @Html.DropDownListFor(model => model.STATE_ID, new SelectList(ViewBag.Data1, "STATE_ID", "STATE_NAME"), "Select State")
+                @*@Html.DropDownListFor(model => model.STATE_ID, new SelectList(ViewBag.Data1, "STATE_ID", "STATE_NAME"), "Select State")*@
+                @Html.DropDownListFor(model => model.STATE_ID, new SelectList("", ""), new { @id = "state" })
             </td>
             <td>
                 @Html.ValidationMessageFor(Model => Model.STATE_ID, "", new { @class = "text-danger" })
@@ -189,5 +228,5 @@
 
 }
 
-<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
-<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>
+@*<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.js"></script>*@
