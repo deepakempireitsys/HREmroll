@@ -52,24 +52,37 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                DivisionRepository objRepo = new DivisionRepository(_configuration);
+                ModelState.Remove("DIVISION_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
 
-                objRepo.AddDivision(obj);
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
 
-                ViewBag.Message = "Records added successfully.";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    DivisionRepository objRepo = new DivisionRepository(_configuration);
 
-                return RedirectToAction("GetAllDivisions");
-                // return View("GetAllDivisions");
+                    objRepo.AddDivision(obj);
+
+                    ViewBag.Message = "Records added successfully.";
+
+                    return RedirectToAction("GetAllDivisions");
+                    // return View("GetAllDivisions");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
@@ -97,11 +110,20 @@ namespace HREmroll.Controllers
         {
             try
             {
-                DivisionRepository objRepo = new DivisionRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    DivisionRepository objRepo = new DivisionRepository(_configuration);
 
-                objRepo.UpdateDivision(obj1);
+                    objRepo.UpdateDivision(obj1);
 
-                return RedirectToAction("GetAllDivisions");
+                    return RedirectToAction("GetAllDivisions");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {

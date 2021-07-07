@@ -40,11 +40,11 @@ namespace HREmroll.Repository
             {
                 DynamicParameters Param = new DynamicParameters();
                 Param.Add("@CMP_ID",obj.CMP_ID);
-	            Param.Add("@INITIALS",obj.INITIALS);
+	            //Param.Add("@INITIALS",obj.INITIALS);
 	            Param.Add("@FIRST_NAME", obj.FIRST_NAME);
                 Param.Add("@MIDDLE_NAME",obj.MIDDLE_NAME);
                 Param.Add("@LAST_NAME", obj.LAST_NAME);
-                Param.Add("@EMPLOYEE_CODE_PREFIX", obj.EMPLOYEE_CODE_PREFIX);
+               // Param.Add("@EMPLOYEE_CODE_PREFIX", obj.EMPLOYEE_CODE_PREFIX);
                 Param.Add("@EMPLOYEE_CODE", obj.EMPLOYEE_CODE);
                 Param.Add("@BRANCH_ID", obj.BRANCH_ID);
                 Param.Add("@GRADE_ID", obj.GRADE_ID);
@@ -61,8 +61,12 @@ namespace HREmroll.Repository
                 Param.Add("@GROSS_SALARY",obj.GROSS_SALARY);
                 Param.Add("@LOGIN_ALIAS", obj.LOGIN_ALIAS);
                 Param.Add("@BASIC_SALARY",obj.BASIC_SALARY);
-                Param.Add("@EMP_PHOTO", obj.EMP_PHOTO);
-                Param.Add("@EMP_SIGNATURE", obj.EMP_SIGNATURE);
+               
+                Param.Add("@IMAGE_NAME", obj.IMAGE_NAME);
+                Param.Add("@IMAGE_TYPE", obj.IMAGE_TYPE);
+                Param.Add("@IMAGE_PATH", obj.IMAGE_PATH);
+                Param.Add("@IMAGE_EXT", obj.IMAGE_EXT);
+                Param.Add("@IMAGE_BLOB", obj.IMAGE_BLOB);
                 Param.Add("@IS_LATE_MARK", obj.IS_LATE_MARK);
                 Param.Add("@IS_EARLY_MARK", obj.IS_EARLY_MARK);
                 Param.Add("@IS_FIX_SALARY", obj.IS_FIX_SALARY);
@@ -171,7 +175,7 @@ namespace HREmroll.Repository
             {
                 
                 DynamicParameters param = new DynamicParameters();
-                param.Add("@Employee_ID", id);
+                param.Add("@EMP_ID", id);
                 param.Add("@StatementType", "ById");
                 
                 Employee obj = _dapperAdapter.Get<Employee>("PROC_EMROLL_EMPLOYEE_MASTER", param, CommandType.StoredProcedure);
@@ -198,11 +202,12 @@ namespace HREmroll.Repository
                 DynamicParameters Param = new DynamicParameters();
                
                 Param.Add("@CMP_ID", obj.CMP_ID);
-                Param.Add("@INITIALS", obj.INITIALS);
+                Param.Add("@EMP_ID", obj.EMP_ID);
+                //Param.Add("@INITIALS", obj.INITIALS);
                 Param.Add("@FIRST_NAME", obj.FIRST_NAME);
                 Param.Add("@MIDDLE_NAME", obj.MIDDLE_NAME);
                 Param.Add("@LAST_NAME", obj.LAST_NAME);
-                Param.Add("@EMPLOYEE_CODE_PREFIX", obj.EMPLOYEE_CODE_PREFIX);
+               // Param.Add("@EMPLOYEE_CODE_PREFIX", obj.EMPLOYEE_CODE_PREFIX);
                 Param.Add("@EMPLOYEE_CODE", obj.EMPLOYEE_CODE);
                 Param.Add("@BRANCH_ID", obj.BRANCH_ID);
                 Param.Add("@GRADE_ID", obj.GRADE_ID);
@@ -219,8 +224,11 @@ namespace HREmroll.Repository
                 Param.Add("@GROSS_SALARY", obj.GROSS_SALARY);
                 Param.Add("@LOGIN_ALIAS", obj.LOGIN_ALIAS);
                 Param.Add("@BASIC_SALARY", obj.BASIC_SALARY);
-                Param.Add("@EMP_PHOTO", obj.EMP_PHOTO);
-                Param.Add("@EMP_SIGNATURE", obj.EMP_SIGNATURE);
+                Param.Add("@IMAGE_NAME", obj.IMAGE_NAME);
+                Param.Add("@IMAGE_TYPE", obj.IMAGE_TYPE);
+                Param.Add("@IMAGE_PATH", obj.IMAGE_PATH);
+                Param.Add("@IMAGE_EXT", obj.IMAGE_EXT);
+                Param.Add("@IMAGE_BLOB", obj.IMAGE_BLOB);
                 Param.Add("@IS_LATE_MARK", obj.IS_LATE_MARK);
                 Param.Add("@IS_EARLY_MARK", obj.IS_EARLY_MARK);
                 Param.Add("@IS_FIX_SALARY", obj.IS_FIX_SALARY);
@@ -232,7 +240,7 @@ namespace HREmroll.Repository
                 Param.Add("@CREATED_DATE", DateTime.Now);
                 Param.Add("@MODIFIED_BY", 1);
                 Param.Add("@MODIFIED_DATE", DateTime.Now);
-                Param.Add("@ISACTIVE", 1);
+                Param.Add("@ISACTIVE", obj.ISACTIVE);
                 Param.Add("@StatementType", "Update");
                 int i = 0;
                 i =_dapperAdapter.Execute("PROC_EMROLL_EMPLOYEE_MASTER", Param, commandType: CommandType.StoredProcedure);
@@ -258,7 +266,7 @@ namespace HREmroll.Repository
 
                 DynamicParameters param = new DynamicParameters();
                 param.Add("@StatementType", "Delete");
-                param.Add("@Employee_ID", Id);
+                param.Add("@EMP_ID", Id);
                 param.Add("@MODIFIED_BY", 1);
                 param.Add("@MODIFIED_DATE", DateTime.Now);
                 param.Add("@ISACTIVE", 0);

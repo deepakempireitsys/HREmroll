@@ -52,24 +52,38 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                GradeRepository objRepo = new GradeRepository(_configuration);
+                ModelState.Remove("GRADE_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
 
-                objRepo.AddGrade(obj);
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
 
-                ViewBag.Message = "Records added successfully.";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    GradeRepository objRepo = new GradeRepository(_configuration);
 
-                return RedirectToAction("GetAllGrades");
-                // return View("GetAllGrades");
+                    objRepo.AddGrade(obj);
+
+                    ViewBag.Message = "Records added successfully.";
+
+                    return RedirectToAction("GetAllGrades");
+                    // return View("GetAllGrades");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
@@ -97,11 +111,22 @@ namespace HREmroll.Controllers
         {
             try
             {
-                GradeRepository objRepo = new GradeRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    GradeRepository objRepo = new GradeRepository(_configuration);
 
-                objRepo.UpdateGrade(obj);
+                    objRepo.UpdateGrade(obj);
 
-                return RedirectToAction("GetAllGrades");
+                    return RedirectToAction("GetAllGrades");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+
+                }
             }
             catch
             {

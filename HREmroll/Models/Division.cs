@@ -13,19 +13,22 @@ namespace HREmroll.Models
         public long DIVISION_ID { get; set; } //NUMERIC(18, 0) null,
 
         [Display(Name = "CMP ID")]
+        [Required(ErrorMessage ="Enter Company Id")]
         public long CMP_ID { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "COMPANY")]
         public string CMP_NAME { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "BR ID")]
-        [Required, Range(1, int.MaxValue, ErrorMessage = "Must Select Branch")]
-        public long BRANCH_ID { get; set; }           // NUMERIC(18,0) null,
+        [Required(ErrorMessage = "Must Select Branch Name")]
+        public Nullable<long> BRANCH_ID { get; set;}           // NUMERIC(18,0) null,
 
         [Display(Name = "BRANCH")]
+        
         public string BRANCH_NAME { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "NAME")]
+        [Required(ErrorMessage ="Enter Division Name")]
         public string DIVISION_NAME { get; set; }  // VARCHAR(500) null,  
 
         [Display(Name = "DESCRIPTION")]

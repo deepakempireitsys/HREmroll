@@ -60,17 +60,27 @@ namespace HREmroll.Controllers
         [HttpPost]
         public IActionResult AddHoliday(Holiday obj)
         {
-            try
+            try         
             {
-                
-                HolidayRepository objRepo = new HolidayRepository(_configuration);
+                ModelState.Remove("Holiday_ID");
+                if (ModelState.IsValid)
+                {
+                    HolidayRepository objRepo = new HolidayRepository(_configuration);
 
-                objRepo.AddHoliday(obj);
+                    objRepo.AddHoliday(obj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAllHolidays");
-               // return View("GetAllHolidays");
+                    return RedirectToAction("GetAllHolidays");
+                    // return View("GetAllHolidays");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
@@ -98,11 +108,21 @@ namespace HREmroll.Controllers
         {
             try
             {
-                HolidayRepository objRepo = new HolidayRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    HolidayRepository objRepo = new HolidayRepository(_configuration);
 
-                objRepo.UpdateHoliday(obj);
+                    objRepo.UpdateHoliday(obj);
 
-                return RedirectToAction("GetAllHolidays");
+                    return RedirectToAction("GetAllHolidays");
+                }
+                else
+                {
+                    HREmroll.Repository.BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
