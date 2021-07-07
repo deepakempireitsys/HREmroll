@@ -1,13 +1,15 @@
 ﻿
+
 @model HREmroll.Models.Employee
 @{
-    ViewData["Title"] = "AddEmployee";
+    ViewData["Title"] = "EditEmployee";
     Layout = "~/Views/Shared/_MasterLayout.cshtml";
 
 }
 
 @using (@Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
 {@Html.AntiForgeryToken()
+
 
 <script type="text/javascript">
     function readURL(input) {
@@ -16,22 +18,7 @@
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                $('#logo').attr('src', e.target.result);
-                $('#logo1').attr('src', e.target.result);
-            }
-
-            reader.readAsDataURL(input.files[0]);
-        }
-    }
-
-    function readURL1(input) {
-        debugger;
-        if (input.files && input.files[0]) {
-            var reader = new FileReader();
-
-            reader.onload = function (e) {
-                $('#logo1').attr('src', e.target.result);
-
+                $('#logo2').attr('src', e.target.result);
             }
 
             reader.readAsDataURL(input.files[0]);
@@ -48,52 +35,60 @@
 <div>
     @Html.ActionLink("Back to Employee List", "GetAllEmployee")
 
+
+    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
     <p>
     <p>
+
+        @Html.HiddenFor(model => model.EMP_ID, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.CREATED_BY, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.CREATED_DATE, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.IMAGE_NAME, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.IMAGE_TYPE, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.IMAGE_EXT, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.IMAGE_PATH, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.HiddenFor(model => model.IMAGE_BLOB, new { htmlAttributes = new { @class = "form-control" } })
 
         <table cellpadding="5">
 
 
             <tr>
                 <td>
+                    @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
                     @Html.LabelFor(model => model.BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
                 </td>
+
                 <td>
                 </td>
-                <td>
-                </td>
+
                 <td>
                     @Html.LabelFor(model => model.FIRST_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
                     @Html.EditorFor(model => model.FIRST_NAME, new { htmlAttributes = new { @class = "form-control" } })
+                </td>
+                <td>
                     @Html.ValidationMessageFor(model => model.FIRST_NAME, "", new { @class = "text-danger" })
-                </td>
-                <td>
-                </td>
-                <td>
                 </td>
 
                 <td>
-                    Upload Photo
+                    Upload Company Logo
                 </td>
                 <td colspan="2">
                     <input class="form-control" name="files" type="file" onchange="readURL(this);" />
                 </td>
-              
                 <td>
-                    <img id="logo" height=100 width=200 src="/IMAGES/profile-logo.jpg" />
-                
-                    @if (ViewBag.imagenotupload != null)
-                    {
-                        <div class="text-danger">@ViewBag.imagenotupload</div>
-                    }
-
+                    <img id="logo1" src="@ViewBag.ImageData" object-fit="cover" height=200 />
+                    <img id="logo2" src="@("/IMAGES/"+Model.IMAGE_NAME)" height=200 object-fit="cover" />
                 </td>
 
             </tr>
@@ -107,18 +102,17 @@
                     @Html.EditorFor(model => model.MIDDLE_NAME, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.MIDDLE_NAME, "", new { @class = "text-danger" })
                 </td>
-                <td>
-                </td>
+
                 <td>
                     @Html.LabelFor(model => model.LAST_NAME, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
                     @Html.EditorFor(model => model.LAST_NAME, new { htmlAttributes = new { @class = "form-control" } })
-                    <br />
-                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.LAST_NAME, "", new { @class = "text-danger" })
                 </td>
                 <td>
                 </td>
@@ -131,11 +125,11 @@
                 </td>
                 <td>
                     @Html.EditorFor(model => model.EMPLOYEE_CODE, new { htmlAttributes = new { @class = "form-control" } })
-                    <br />
-                    @Html.ValidationMessageFor(model => model.EMPLOYEE_CODE, "", new { @class = "text-danger" })
                 </td>
+                <td>
+                    @Html.ValidationMessageFor(model => model.EMPLOYEE_CODE, "", new { @class = "text-danger" })
 
-                @*<td>
+                    @*<td>
                     @Html.LabelFor(model => model.SUB_BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
@@ -145,28 +139,24 @@
                 <td>
                 </td>*@
                 <td>
-                </td>
-                <td>
-                </td>
-                <td>
                     @Html.LabelFor(model => model.CMP_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
                     @Html.EditorFor(model => model.CMP_ID, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
+
+
             </tr>
 
             <tr>
+
                 <td>
                     @Html.LabelFor(model => model.GRADE_ID, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.GRADE_ID, new SelectList(ViewBag.Grade, "GRADE_ID", "GRADE_NAME"), "Select Grade")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.GRADE_ID, "", new { @class = "text-danger" })
                 </td>
-                <td>
-                </td>
+
                 <td>
                 </td>
                 <td>
@@ -175,7 +165,9 @@
                 <td>
                     @Html.EditorFor(model => model.DATE_OF_JOINING, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
-
+                <td>
+                    @Html.ValidationMessageFor(model => model.DATE_OF_JOINING, "", new { @class = "text-danger" })
+                </td>
                 <td>
                 </td>
             </tr>
@@ -187,11 +179,8 @@
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.SHIFT_ID, new SelectList(ViewBag.Shift, "SHIFT_ID", "SHIFT_NAME"), "Select Shift")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.SHIFT_ID, "", new { @class = "text-danger" })
                 </td>
-                <td>
-                </td>
+
                 <td>
                 </td>
                 <td>
@@ -199,8 +188,6 @@
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.DESIGNATION_ID, new SelectList(ViewBag.Designation, "DESIGNATION_ID", "DESIGNATION_NAME"), "Select Designation")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.DESIGNATION_ID, "", new { @class = "text-danger" })
                 </td>
 
                 <td>
@@ -214,10 +201,19 @@
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.DEPARTMENT_ID, new SelectList(ViewBag.Departments, "DEPARTMENT_ID", "DEPARTMENT_NAME"), "Select Department")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.DEPARTMENT_ID, "", new { @class = "text-danger" })
                 </td>
 
+                <td>
+                </td>
+                <td>
+                    @Html.LabelFor(model => model.DEPARTMENT_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+                </td>
+                <td>
+                    @Html.DropDownListFor(model => model.DEPARTMENT_ID, new SelectList(ViewBag.Departments, "DEPARTMENT_ID", "DEPARTMENT_NAME"), "Select Branch")
+                </td>
+
+                <td>
+                </td>
             </tr>
 
             <tr>
@@ -227,20 +223,26 @@
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.CATEGORY_ID, new SelectList(ViewBag.Category, "CATEGORY_ID", "CATEGORY_NAME"), "Select Category")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.CATEGORY_ID, "", new { @class = "text-danger" })
                 </td>
 
+                <td>
+                </td>
 
+                <td>
+                    @Html.DropDownListFor(model => model.CATEGORY_ID, new SelectList(ViewBag.Category, "CATEGORY_ID", "CATEGORY_NAME"), "Select Category")
+                </td>
+
+                <td>
+                </td>
                 @*<td>
-                    @Html.LabelFor(model => model.REPORTING_MANAGER_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                </td>
-                <td>
-                    @Html.DropDownListFor(model => model.REPORTING_MANAGER_ID, new SelectList(ViewBag.Data, "REPORTING_MANAGER_ID", "DESIGNATION_NAME"), "Select Branch")
-                </td>
+                @Html.LabelFor(model => model.REPORTING_MANAGER_ID, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.DropDownListFor(model => model.REPORTING_MANAGER_ID, new SelectList(ViewBag.Data, "REPORTING_MANAGER_ID", "DESIGNATION_NAME"), "Select Branch")
+            </td>
 
-                <td>
-                </td>*@
+            <td>
+            </td>*@
             </tr>
 
             <tr>
@@ -252,9 +254,9 @@
                     @Html.EditorFor(model => model.ENROLL_OR_PUNCH_CODE, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.ENROLL_OR_PUNCH_CODE, "", new { @class = "text-danger" })
                 </td>
-                <td>
-                </td>
+
                 <td>
                     @Html.LabelFor(model => model.CTC, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
@@ -262,6 +264,7 @@
                     @Html.EditorFor(model => model.CTC, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.CTC, "", new { @class = "text-danger" })
                 </td>
                 <td>
                 </td>
@@ -273,14 +276,11 @@
                 </td>
                 <td>
                     @Html.DropDownListFor(model => model.SUB_BRANCH_ID, new SelectList(ViewBag.SBranch, "SUB_BRANCH_ID", "SUB_BRANCH_NAME"), "Select Sub Branch")
-                    <br />
-                    @Html.ValidationMessageFor(model => model.SUB_BRANCH_ID, "", new { @class = "text-danger" })
                 </td>
 
                 <td>
                 </td>
-                <td>
-                </td>
+
                 <td>
                     @Html.LabelFor(model => model.GROSS_SALARY, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
@@ -288,12 +288,14 @@
                     @Html.EditorFor(model => model.GROSS_SALARY, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.GROSS_SALARY, "", new { @class = "text-danger" })
                 </td>
                 <td>
                 </td>
             </tr>
 
             <tr>
+
                 <td>
                     @Html.LabelFor(model => model.LOGIN_ALIAS, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
@@ -301,9 +303,9 @@
                     @Html.EditorFor(model => model.LOGIN_ALIAS, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.LOGIN_ALIAS, "", new { @class = "text-danger" })
                 </td>
-                <td>
-                </td>
+
                 <td>
                     @Html.LabelFor(model => model.BASIC_SALARY, htmlAttributes: new { @class = "control-label col-md-2" })
                 </td>
@@ -311,18 +313,22 @@
                     @Html.EditorFor(model => model.BASIC_SALARY, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.BASIC_SALARY, "", new { @class = "text-danger" })
+                </td>
+                <td>
                 </td>
             </tr>
 
             <tr>
+
+
                 <td>
                     @Html.LabelFor(model => model.IS_LATE_MARK, htmlAttributes: new { @class = "control-label col-md-3" }) : @Html.EditorFor(model => model.IS_LATE_MARK, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
                 <td>
                     @Html.LabelFor(model => model.IS_EARLY_MARK, htmlAttributes: new { @class = "control-label col-md-3" }) : @Html.EditorFor(model => model.IS_EARLY_MARK, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
-                <td>
-                </td>
+
                 <td>
                 </td>
                 <td>
@@ -331,6 +337,8 @@
                 <td>
                     @Html.LabelFor(model => model.IS_PART_TIME, htmlAttributes: new { @class = "control-label col-md-2" }) : @Html.EditorFor(model => model.IS_PART_TIME, new { htmlAttributes = new { @class = "form-control" } })
                 </td>
+
+
             </tr>
 
             <tr>
@@ -350,10 +358,9 @@
                 </td>
                 <td colspan=" 4">
                     @Html.TextAreaFor(model => model.DESCRIPTION, 5, 50, new { htmlAttributes = new { @class = "form-control" } })
-                    <br />
-                    @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
                 </td>
                 <td>
+                    @Html.ValidationMessageFor(model => model.DESCRIPTION, "", new { @class = "text-danger" })
                 </td>
                 <td>
                 </td>
@@ -361,57 +368,15 @@
 
             <tr>
 
-                <td colspan="2">
-                    <input type="submit" value="Save" class="btn btn-default" style="display: inline-block; background-color: #7b38d8; border-radius: 10px;  text-align: center; font-size: 22px; width: 95px; transition: all 0.5s; cursor: pointer; margin: 5px;  background: darkgray; height: 34px;" />
+                <td colspan=" 2">
+                    <input type="submit" value="Save" class="btn btn-default" />
                 </td>
                 <td>
                 </td>
                 <td>
                 </td>
             </tr>
-
-
         </table>
-        <style>
-            #nav {
-                list-style: none;
-            }
-
-                #nav li {
-                    border: 1px solid #666;
-                    display: inline;
-                    /*padding: 8px 16px;*/
-                }
-        </style>
-        <div class="container">
-            <h3>Inline List</h3>
-            <ul id="nav">
-                <li><a href="#">Employee Personal Details</a></li>
-                <li id="empper">@Html.ActionLink("Employee Personal Details", "AddEmployee", "Employee")  </li>
-                <li><a href="#">Contact Details</a></li>
-                <li><a href="#">Dependents</a></li>
-                <li><a href="#">Immigration</a></li>
-                <li><a href="#">Asset & Licence</a></li>
-                <li><a href="#">Reporting & Contact</a></li>
-                <li><a href="#">Experiance & Language</a></li>
-                <li><a href="#">Skills & Qualification</a></li>
-                <li><a href="#">Reference</a></li>
-                <li><a href="#">Attachments</a></li>
-                <li><a href="#">Allowance</a></li>
-                <li><a href="#">Salary</a></li>
-                <li><a href="#">Insurance & Medical</a></li>
-                <li><a href="#">Customized & Field</a></li>
-            </ul>
-
-
-
-        </div>
-        <br />
-        <br />
-        <br />
-        <div class="container" id="empdetails">
-            @{Html.RenderPartial("_EmpPersonalDetails"); }
-        </div>
 
         @ViewBag.Message
         <div class="form-group">
@@ -493,11 +458,3 @@
 
 
 }
-
-@*<script type="text/javascript">
-    $("#empper").click(function () {
-        $("#empdetails").hide();
-        $("#empdetails").show();
-    })
-</script>*@
-

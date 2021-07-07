@@ -43,10 +43,12 @@
     <None Include="Views\1_ViewImports.cshtml" />
     <None Include="Views\_ViewStart1.cshtml" />
     <None Include="wwwroot\IMAGES\logo-06.jpg" />
+    <None Include="wwwroot\IMAGES\profile-logo.jpg" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="3.1.5" />
     <PackageReference Include="jQuery.InputMask" Version="5.0.6" />
     <PackageReference Include="Moment.js" Version="2.29.1" />

@@ -1,24 +1,20 @@
 ﻿
 @model IEnumerable<HREmroll.Models.Employee>
 @{
-    ViewData["Title"] = "GetAllEmployeeDetails";
+    ViewData["Title"] = "GetInActiveEmployeeDetails";
 }
 
 
 <p>
     <span>@Html.ActionLink("Add New Employee", "AddEmployee")</span>
-
     <span>@Html.ActionLink("Active Employee", "GetActiveEmployee")</span>
-
-    <span>@Html.ActionLink("InActive Employee", "GetInActiveEmployee")</span>
+    <span>@Html.ActionLink("Back to Employee List", "GetAllEmployee")</span>
 
 </p>
 
-<table class="table"  border="1" style="border-collapse: collapse;" cellpadding="3">
+<table class="table" border="1" style="border-collapse: collapse;" cellpadding="3">
 
     <tr>
-
-
         <th>@Html.DisplayNameFor(model => model.CMP_ID)</th>
         <th>@Html.DisplayNameFor(model => model.INITIALS)</th>
         <th>@Html.DisplayNameFor(model => model.FIRST_NAME)</th>
@@ -38,7 +34,7 @@
         <th>@Html.DisplayNameFor(model => model.SUB_BRANCH_ID)</th>
         <th>@Html.DisplayNameFor(model => model.GROSS_SALARY)</th>
         <th>@Html.DisplayNameFor(model => model.BASIC_SALARY)</th>
-      
+
         <th>@Html.DisplayNameFor(model => model.IS_LATE_MARK)</th>
         <th>@Html.DisplayNameFor(model => model.IS_EARLY_MARK)</th>
         <th>@Html.DisplayNameFor(model => model.IS_FIX_SALARY)</th>
@@ -77,7 +73,7 @@
     <th>@Html.DisplayFor(model => item.SUB_BRANCH_ID)</th>
     <th>@Html.DisplayFor(model => item.GROSS_SALARY)</th>
     <th>@Html.DisplayFor(model => item.BASIC_SALARY)</th>
-  
+   
     <th>@Html.DisplayFor(model => item.IS_LATE_MARK)</th>
     <th>@Html.DisplayFor(model => item.IS_EARLY_MARK)</th>
     <th>@Html.DisplayFor(model => item.IS_FIX_SALARY)</th>
@@ -93,13 +89,12 @@
 
     <td>
         @Html.ActionLink("Edit", "EditEmployee", new { id = item.EMP_ID })
-        | @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.EMP_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+        @*
+            | @Html.ActionLink("Delete", "DeleteEmployee", new { id = item.CMP_ID }, new { onclick = "return confirm('Are sure wants to delete?');" })
+        *@
     </td>
 </tr>
 
     }
 
-
 </table> 
-
-
