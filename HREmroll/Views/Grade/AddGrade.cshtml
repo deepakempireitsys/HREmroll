@@ -11,13 +11,11 @@
     <h4> Add Grade </h4>
 </div>
 
-
-
 <div>
     @Html.ActionLink("Back to Grade List", "GetAllGrades")
 
 
-    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+    @*@Html.ValidationSummary(true, "", new { @class = "text-danger" })*@
 
 
 
@@ -43,8 +41,8 @@
             <td>
                 @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
             </td>
-
             <td>
+                @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
         <tr>
@@ -130,11 +128,6 @@
     <div class="form-group">
         @Html.HiddenFor(model => model.MODIFIED_DATE)
     </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BRANCH_NAME)
-    </div>
-
 
     @*
         <div class="form-group">

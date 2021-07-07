@@ -77,24 +77,39 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                obj.BRANCH_NAME = "Default";
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                DepartmentRepository objRepo = new DepartmentRepository(_configuration);
+                ModelState.Remove("DEPARTMENT_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
+                    obj.BRANCH_NAME = "Default";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    DepartmentRepository objRepo = new DepartmentRepository(_configuration);
 
-                objRepo.AddDepartment(obj);
+                    objRepo.AddDepartment(obj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAllDepartments");
-               // return View("GetAllDepartments");
+                    return RedirectToAction("GetAllDepartments");
+                    // return View("GetAllDepartments");
+
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
+
             }
             catch
             {
@@ -122,11 +137,21 @@ namespace HREmroll.Controllers
         {
             try
             {
-                DepartmentRepository objRepo = new DepartmentRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    DepartmentRepository objRepo = new DepartmentRepository(_configuration);
 
-                objRepo.UpdateDepartment(obj);
+                    objRepo.UpdateDepartment(obj);
 
-                return RedirectToAction("GetAllDepartments");
+                    return RedirectToAction("GetAllDepartments");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
