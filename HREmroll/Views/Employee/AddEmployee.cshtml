@@ -13,17 +13,22 @@
 
 <script>
     $(document).ready(function () {
+
         $(".button1").click(function () {
+       
             var fild_name;
             var id = $(".button1").attr('id');
+        
             fild_name = $(this).val();
+          
             $("#div1").load("/Employee/" + fild_name);
         });
-    });     
+
+    });
 </script>
 
 
-@
+
 <body>
 
 
@@ -475,3 +480,4 @@
 
 
 }
+
