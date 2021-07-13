@@ -8,21 +8,21 @@ namespace HREmroll.Models
 {
     public class Shift
     {
-		
-
+		  
 		[Display(Name = "SHIFT ID")]
 		public long SHIFT_ID				{ get; set; }
 
 		[Display(Name = "Name")]
+		[Required(ErrorMessage ="Enter Shift Name")]
 		public string SHIFT_NAME			{ get; set; }
 
 		[Display(Name = "CMP ID")]
-		[Required, Range(1, int.MaxValue, ErrorMessage = "Must Select Company")]
-		public long CMP_ID					{ get; set; }
+		[Required(ErrorMessage = "Must Select Company")]
+		public Nullable<long> CMP_ID	 { get; set; }
 
 		[Display(Name = "Company")]
 		public string CMP_NAME				{ get; set; }
-
+		 
 		[Display(Name = "BR ID")]
 		[Required, Range(1, int.MaxValue, ErrorMessage = "Must Select Branch")]
 		public long BRANCH_ID				{ get; set; }

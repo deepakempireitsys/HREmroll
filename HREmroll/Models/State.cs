@@ -17,7 +17,7 @@ namespace HREmroll.Models
         [Required(ErrorMessage = "Plese enter state name")]
         public string STATE_NAME { get; set; }
         [Display(Name = "Description")]
-        [Required(ErrorMessage = "Plese enter description")]
+        //[Required(ErrorMessage = "Plese enter description")]
         public string DESCRIPTION { get; set; }
         [Display(Name = "Country Name")]
         public string COUNTRY_NAME { get; set; }

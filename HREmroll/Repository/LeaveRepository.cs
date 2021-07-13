@@ -31,7 +31,7 @@ namespace HREmroll.Repository
             {
                 DynamicParameters param = new DynamicParameters();
 
-                param.Add("@LEAVETYPE", objLeave.LEAVETYPE);
+                //param.Add("@LEAVETYPE", objLeave.LEAVETYPE);
                 param.Add("@DESCRIPTION", objLeave.DESCRIPTION);
                 param.Add("@CMP_ID", objLeave.CMP_ID);
                 param.Add("@BRANCH_ID", objLeave.BRANCH_ID);
@@ -149,8 +149,8 @@ namespace HREmroll.Repository
                 param.Add("@LEAVEID", objUpdate.LEAVEID);
                 param.Add("@CMP_ID", objUpdate.CMP_ID);
                 param.Add("@BRANCH_ID", objUpdate.BRANCH_ID);
-                param.Add("@CREATED_BY", objUpdate.CREATED_BY);
-                param.Add("@CREATED_DATE", DateTime.Now);
+                //param.Add("@CREATED_BY", objUpdate.CREATED_BY);
+                //param.Add("@CREATED_DATE", DateTime.Now);
                 param.Add("@MODIFIED_BY", 1);
                 param.Add("@MODIFIED_DATE", DateTime.Now);
                 param.Add("@ISACTIVE", objUpdate.ISACTIVE);

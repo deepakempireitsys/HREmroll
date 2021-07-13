@@ -13,6 +13,7 @@ namespace HREmroll.Models
         public long LICENCE_ID { get; set; } //NUMERIC(18, 0) null,
 
         [Display(Name = "CMP ID")]
+        [Required(ErrorMessage ="Enter Company Id")]
         public long CMP_ID { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "COMPANY")]
@@ -26,6 +27,7 @@ namespace HREmroll.Models
         //public string BRANCH_NAME { get; set; }           // NUMERIC(18,0) null,
 
         [Display(Name = "NAME")]
+        [Required(ErrorMessage = "Enter Licence Name")]
         public string LICENCE_NAME { get; set; }  // VARCHAR(500) null,  
 
         [Display(Name = "DESCRIPTION")]

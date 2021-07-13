@@ -55,19 +55,33 @@ namespace HREmroll.Controllers
         {
             try
             {
-                lvobj.CREATED_BY = 1;
-                lvobj.CREATED_DATE = DateTime.Now;
-                lvobj.MODIFIED_BY = 1;
-                lvobj.MODIFIED_DATE = DateTime.Now;
-                lvobj.BRANCH_NAME = "Default";
+                ModelState.Remove("SUB_BRANCH_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+                if (ModelState.IsValid)
+                {
+                    lvobj.CREATED_BY = 1;
+                    lvobj.CREATED_DATE = DateTime.Now;
+                    lvobj.MODIFIED_BY = 1;
+                    lvobj.MODIFIED_DATE = DateTime.Now;
+                    lvobj.BRANCH_NAME = "Default";
 
 
-                SubBranchRepository sbrp = new SubBranchRepository(_configuration);
-                sbrp.AddSBranchDetail(lvobj);
+                    SubBranchRepository sbrp = new SubBranchRepository(_configuration);
+                    sbrp.AddSBranchDetail(lvobj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAllSubBranch");
+                    return RedirectToAction("GetAllSubBranch");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+
+                    return View();
+                }
 
             }
             catch
@@ -95,11 +109,22 @@ namespace HREmroll.Controllers
         {
             try
             {
-                SubBranchRepository sbrp = new SubBranchRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    SubBranchRepository sbrp = new SubBranchRepository(_configuration);
 
-                sbrp.UpdateSBranch(obj);
+                    sbrp.UpdateSBranch(obj);
 
-                return RedirectToAction("GetAllSubBranch");
+                    return RedirectToAction("GetAllSubBranch");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+
+                    return View();
+                }
             }
             catch
             {

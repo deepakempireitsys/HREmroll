@@ -19,7 +19,7 @@ namespace HREmroll.Controllers
             //_logger = logger;
             _configuration = configuration;
         }
-
+        
         public IActionResult GetAllProjects()
         {
             ProjectRepository objRepo = new ProjectRepository(_configuration);
@@ -52,24 +52,38 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                ProjectRepository objRepo = new ProjectRepository(_configuration);
+                ModelState.Remove("PROJECT_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
 
-                objRepo.AddProject(obj);
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
 
-                ViewBag.Message = "Records added successfully.";
+                    //if (ModelState.IsValid)
+                    //{
+                    //    
+                    //
+                    //}
+                    ProjectRepository objRepo = new ProjectRepository(_configuration);
 
-                return RedirectToAction("GetAllProjects");
-                // return View("GetAllProjects");
+                    objRepo.AddProject(obj);
+
+                    ViewBag.Message = "Records added successfully.";
+
+                    return RedirectToAction("GetAllProjects");
+                    // return View("GetAllProjects");
+                }
+                else
+                {
+                    HREmroll.Repository.BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
@@ -97,11 +111,21 @@ namespace HREmroll.Controllers
         {
             try
             {
-                ProjectRepository objRepo = new ProjectRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    ProjectRepository objRepo = new ProjectRepository(_configuration);
 
-                objRepo.UpdateProject(obj1);
+                    objRepo.UpdateProject(obj1);
 
-                return RedirectToAction("GetAllProjects");
+                    return RedirectToAction("GetAllProjects");
+                }
+                else
+                {
+                    HREmroll.Repository.BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {

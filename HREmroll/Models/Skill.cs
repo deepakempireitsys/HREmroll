@@ -10,10 +10,13 @@ namespace HREmroll.Models
     {
 
         public int SKILL_ID { get; set; }
-        public long CMP_ID { get; set; }
+
+        [Display(Name = "Company Id")]
+        [Required(ErrorMessage = "Must Select Company Id")]
+        public Nullable<long> CMP_ID { get; set;}
 
         [Display(Name = "Skill name")]
-        [Required]
+        [Required(ErrorMessage ="Enter Skill Name")]
         public string SKILL_NAME { get; set; }
 
         [Display(Name = "Description")]

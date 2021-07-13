@@ -10,34 +10,38 @@ namespace HREmroll.Models
     {
 
         public int QUALIFICATION_ID { get; set; }
-        public long CMP_ID { get; set; }
 
-        [Required]
+        [Display(Name ="Company Id")]
+        [Required(ErrorMessage ="Select Company Id")]
+        public Nullable<long> CMP_ID { get; set; }
+
+        [Required(ErrorMessage ="Select Qualification Type")]
         [Display(Name ="Type")]
-
+        
         //[Remote(action: "Designtionduplication", controller: "Home",ErrorMessage ="QUALIFICATION name in already exist")]
         public string TYPE { get; set; }
         [Display(Name = "Qualification name")]
-        [Required]
+        [Required(ErrorMessage ="Enter Qulification Name")]
         public string QUALIFICATION_NAME { get; set; }
 
         [Display(Name = "Description")]
-        [Required]
+      
         public string DESCRIPTION { get; set; }
-        [Required]
+    
         [Display(Name = "Created By")]
         public int CREATED_BY { get; set; }
-        [Required]
+      
         [Display(Name = "Created Date")]
         public DateTime CREATED_DATE { get; set; }
-        [Required]
+       
         [Display(Name = "Modified By")]
         public int MODIFIED_BY { get; set; }
-        [Required]
+    
         [Display(Name = "Modified Date")]
         public DateTime MODIFIED_DATE { get; set; }
 
         public bool ISACTIVE { get; set; }
+
         [Display(Name = "Company Name")]
         public string CMP_NAME { get; set; }
     }

@@ -32,8 +32,8 @@
             <td>
                 @Html.DropDownListFor(model => model.CMP_ID, new SelectList(ViewBag.Data, "CMP_ID", "CMP_NAME"), "Select Country")
             </td>
-
             <td>
+                @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
 
