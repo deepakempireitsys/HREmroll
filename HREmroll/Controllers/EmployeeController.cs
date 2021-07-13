@@ -45,7 +45,7 @@ namespace HREmroll.Controllers
             return View(objRepo.GetInActiveEmployees());
         }
 
-        public IActionResult AddEmployee()
+        public ViewResult AddEmployee()
         {
             BranchRepository br = new BranchRepository(_configuration);
             GradeRepository Grade1 = new GradeRepository(_configuration);
@@ -302,15 +302,16 @@ namespace HREmroll.Controllers
 
         }
 
-        //[System.Web.Mvc.ChildActionOnly]
-        //public IActionResult _EmpPersonalDetails()
-        //{
-        //    return PartialView("_EmpPersonalDetails");
+        public PartialViewResult EmpDetails()
+        {
+            return PartialView("_EmpPersonalDetails");
+        }
 
 
-      
-
-
+        public PartialViewResult Attachments()
+        {
+            return PartialView("_Attachments");
+        }
 
 
     }

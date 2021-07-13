@@ -142,32 +142,68 @@ namespace HREmroll.Models
 		[Display(Name = "ISACTIVE")]
 		public	bool  ISACTIVE		{ get; set; }
 
-		//[Required(ErrorMessage = "Please enter grade name")]
-		//[Display(Name = "GRADE NAME")]
-		//public string GRADE_NAME { get; set; }
+		//Employee Contact Details
+		 [Display(Name = "ADDRESS")]
+		 public String CURR_ADD {get; set;}
 
-		//[Required(ErrorMessage = "Please enter shift name")]
-		//[Display(Name = "SHIFT NAME")]
-		//public string SHIFT_NAME { get; set; }
+		[Display(Name = "TALUKA")]
+		public String CURR_TALUKA {get; set;}
 
-		//[Required(ErrorMessage = "Please enter department name")]
-		//[Display(Name = "DEPARTMENT NAME")]
-		//public string DEPARTMENT_NAME { get; set; }
+		[Display(Name = "DISTRICT")]
+		public String CURR_DISTRICT {get; set;}
 
-		//[Required(ErrorMessage = "Please enter category name")]
-		//[Display(Name = "CATEGORY NAME")]
-		//public string CATEGORY_NAME { get; set; }
+		[Display(Name = "CITY / VILLAGE")]
+		public String CURR_CITY_OR_VILLAGE {get; set;}
 
-		//[Required(ErrorMessage = "Please enter sub branch name")]
-		//[Display(Name = "SUB BRANCH NAME")]
-		//public string SUB_BRANCH_NAME { get; set; }
+		[Display(Name = "STATE")]
+		public String CURR_STATE {get; set;}
 
-		//[Required(ErrorMessage = "Please enter branch name")]
-		//[Display(Name = "BRANCH NAME")]
-		//public string BRANCH_NAME { get; set; }
+		[Display(Name = "PINCODE")]
+		public String CURR_PINCODE {get; set;}
 
-		//[Required(ErrorMessage = "Please enter designation name")]
-		//[Display(Name = "DESIGNATION NAME")]
-		//public string DESIGNATION_NAME { get; set; }
+		[Display(Name = "POLICE STATION")]
+		public String CURR_POLICE_STATION {get; set;}
+
+		[Display(Name = "ADDRESS")]
+		public String PERM_ADD {get; set;}
+
+		[Display(Name = "TALUKA")]
+		public String PERM_TALUKA {get; set;}
+
+		[Display(Name = "DISTRICT")]
+		public String PERM_DISTRICT {get; set;}
+
+		[Display(Name = "CITY / VILLAGE")]
+		public String PERM_CITY_OR_VILLAGE {get; set;}
+
+		[Display(Name = "STATE")]
+		public String PERM_STATE {get; set;}
+
+		[Display(Name = "PINCODE")]
+		public String PERM_PINCODE {get; set;}
+
+		[Display(Name = "POLICE STATION")]
+		public String PERM_POLICE_STATION {get; set;}
+
+		[Display(Name = "COUNTRY")]
+		public String COUNTRY{get; set;}
+
+		[Display(Name = "NATIONALITY")]
+		public String NATIONALITY {get; set;}
+
+		[Display(Name = "WORK PHONE NO")]
+		public String WORK_PHONE_NO {get; set;}
+
+		[Display(Name = "EXTENSION NO")]
+		public String EXTENSION_NO {get; set;}
+
+		[Display(Name = "PERSONAL PHONE NO")]
+		public String PERSONAL_PHONE_NO {get; set;}
+
+		[Display(Name = "MOBILE NO")]
+		public String MOBILE_NO {get; set;}
+
+		[Display(Name = "OFFICIAL EMAIL")]
+		public String OFFICIAL_EMAIL {get; set;}
 	}
 }

@@ -84,9 +84,6 @@
                 <div class="navbar-collapse collapse">
                     <nav>
                         <ul id="nav">
-                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                            <li>@Html.ActionLink("Abouts", "Abouts", "Abouts")</li>
-
                             <li>
                                 <a href="#">Master 1</a>
                                 <ul>
@@ -104,6 +101,14 @@
 
                                 </ul>
                             </li>
+                            <li>@Html.ActionLink("Home", "Index", "Home")</li>
+
+                            <li>@Html.ActionLink("Abouts", "Abouts", "Abouts")</li>
+
+
+                            <li>@Html.ActionLink("Contact Us", "Contact", "Contact")</li>
+                            <li>@Html.ActionLink("Service", "Service", "Service")</li>
+
                             <li>
                                 <a href="#">Master 2</a>
                                 <ul>
@@ -123,8 +128,6 @@
 
                                 </ul>
                             </li>
-                            <li>@Html.ActionLink("Contact Us", "Contact", "Contact")</li>
-                            <li>@Html.ActionLink("Service", "Service", "Service")</li>
                         </ul>
                     </nav>
 
@@ -138,6 +141,7 @@
     <br />
     <br />
     <div class="container body-content">
+ 
         @RenderBody()
 
     </div>
