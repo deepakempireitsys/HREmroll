@@ -45,6 +45,7 @@
             </td>
 
             <td>
+                @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
         <tr>
@@ -129,10 +130,6 @@
 
     <div class="form-group">
         @Html.HiddenFor(model => model.MODIFIED_DATE)
-    </div>
-
-    <div class="form-group">
-        @Html.HiddenFor(model => model.BRANCH_NAME)
     </div>
 
 

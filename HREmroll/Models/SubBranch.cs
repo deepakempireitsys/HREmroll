@@ -12,22 +12,25 @@ namespace HREmroll.Models
         public int SUB_BRANCH_ID { get; set; }
 
         [Display(Name = "CMP ID")]
-        public long CMP_ID { get; set; }
+        [Required(ErrorMessage ="Enter Company Id")]
+        public Nullable<long> CMP_ID { get; set; }
 
         [Display(Name = "COMPANY NAME")]
         public string CMP_NAME { get; set; }
 
         [Display(Name = "BR ID")]
-        [Required, Range(1, int.MaxValue, ErrorMessage = "Must Select Leave")]
-        public long BRANCH_ID { get; set; }
+        [Required(ErrorMessage = "Must Select Branch")]
+        public Nullable<long> BRANCH_ID { get; set; }
 
         [Display(Name = "BRANCH")]
         public string BRANCH_NAME { get; set; }
 
         [Display(Name = "SUB BRANCH NAME")]
+        [Required(ErrorMessage ="Enter SubBranch Name")]
         public string SUB_BRANCH_NAME { get; set; }
 
         [Display(Name = "SUB BRANCH CODE")]
+        [Required(ErrorMessage ="Enter SubBranch Code")]
         public string SUB_BRANCH_CODE { get; set; }
         //[Required(ErrorMessage = "Branch Name is required.")]
 

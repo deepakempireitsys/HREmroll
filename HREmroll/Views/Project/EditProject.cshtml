@@ -53,10 +53,10 @@
 
 
             @Html.DropDownListFor(model => model.BRANCH_ID, new SelectList(ViewBag.Data, "BRANCH_ID", "BRANCH_NAME"), "Select Branch")
-
+            @Html.ValidationMessageFor(model => model.BRANCH_ID, "", new { @class = "text-danger" })
         </div>
     </div>
-
+    
 
 
     @*

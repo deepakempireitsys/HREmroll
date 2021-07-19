@@ -38,7 +38,6 @@ namespace HREmroll.Controllers
         public ActionResult Create()
         {
 
-
             CompanyRepository objRepo = new CompanyRepository(_configuration);
             ViewBag.data = objRepo.GetAllCompanys();
             return View();
@@ -50,21 +49,31 @@ namespace HREmroll.Controllers
         {
             try
             {
+                ModelState.Remove("QUALIFICATION_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
 
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
 
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
+                    QualificationRepository objRepo = new QualificationRepository(_configuration);
 
-                QualificationRepository objRepo = new QualificationRepository(_configuration);
+                    objRepo.AddQualification(obj);
 
-                objRepo.AddQualification(obj);
+                    ViewBag.Message = "Records added successfully.";
 
-                ViewBag.Message = "Records added successfully.";
-
-                return RedirectToAction("GetAll");
-
+                    return RedirectToAction("GetAll");
+                }
+                else
+                {
+                    CompanyRepository objRepo = new CompanyRepository(_configuration);
+                    ViewBag.data = objRepo.GetAllCompanys();
+                    return View();
+                }
 
 
             }
@@ -91,7 +100,6 @@ namespace HREmroll.Controllers
                 if (ModelState.IsValid)
                 {
 
-
                     QualificationRepository objRepo = new QualificationRepository(_configuration);
 
                     objRepo.UpdateQualification(obj);
@@ -100,8 +108,9 @@ namespace HREmroll.Controllers
                 }
                 else
                 {
+                    CompanyRepository objRepo = new CompanyRepository(_configuration);
+                    ViewBag.data = objRepo.GetAllCompanys();
                     return View();
-
                 }
             }
             catch

@@ -40,21 +40,31 @@ namespace HREmroll.Controllers
         {
             try
             {
-     
+
                 //obj.BRANCH_NAME = "Default";
                 //if (ModelState.IsValid)
                 //{
                 //    
                 //
                 //}
-                StateRepository objRepo = new StateRepository(_configuration);
+                ModelState.Remove("STATE_ID");
+                if (ModelState.IsValid)
+                {
+                    StateRepository objRepo = new StateRepository(_configuration);
 
-                objRepo.AddState(obj);
+                    objRepo.AddState(obj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAll");
-                // return View("GetAllDepartments");
+                    return RedirectToAction("GetAll");
+                    // return View("GetAllDepartments");
+                }
+                else
+                {
+                    CountryRepository br = new CountryRepository(_configuration);
+                    ViewBag.data = br.GetAll();
+                    return View();
+                }
             }
             catch
             {
@@ -79,11 +89,20 @@ namespace HREmroll.Controllers
         {
             try
             {
-                StateRepository objRepo = new StateRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    StateRepository objRepo = new StateRepository(_configuration);
 
-                objRepo.Updatestate(obj);
+                    objRepo.Updatestate(obj);
 
-                return RedirectToAction("GetAll");
+                    return RedirectToAction("GetAll");
+                }
+                else
+                {
+                    CountryRepository br = new CountryRepository(_configuration);
+                    ViewBag.data = br.GetAll();
+                    return View();
+                }
             }
             catch
             {

@@ -1,7 +1,6 @@
 ﻿@model HREmroll.Models.Qualification
 @{
     ViewData["Title"] = "Update Qualification";
-
 }
 
 @using (@Html.BeginForm())
@@ -11,17 +10,11 @@
     <h4> Update Qualification </h4>
 </div>
 
-
-
-
-
 <div>
     @Html.ActionLink("Back to Qualification List", "GetAll")
 
 
     @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-
-
 
 
     <table>
@@ -34,6 +27,7 @@
             </td>
 
             <td>
+                @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
 

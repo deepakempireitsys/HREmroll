@@ -23,27 +23,27 @@
             <th border="1"> @Html.DisplayNameFor(model => model.DESCRIPTION) </th>
             @* <th> @Html.DisplayNameFor(model => model.Address) </th>*@
 
-        <th>@Html.DisplayNameFor(model => model.SKILL_ID)</td>
-        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</td>
-        <th>@Html.DisplayNameFor(model => model.SKILL_NAME)</td>
+        @*<th>@Html.DisplayNameFor(model => model.SKILL_ID)</td>*@
+        <th>@Html.DisplayNameFor(model => model.CMP_NAME)</th>
+        <th>@Html.DisplayNameFor(model => model.SKILL_NAME)</th>
 
-        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</td>
-        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</td>
-        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</td>
-        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</td>
-        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</td>
-        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</td>
+        <th>@Html.DisplayNameFor(model => model.DESCRIPTION)</th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.CREATED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_BY)</th>
+        <th>@Html.DisplayNameFor(model => model.MODIFIED_DATE)</th>
+        <th>@Html.DisplayNameFor(model => model.ISACTIVE)</th>
 
 
 
-        <th>@Html.DisplayName("Edit / Delete")</td>
+        <th>@Html.DisplayName("Edit / Delete")</th>
 
     </tr>
     @foreach (var item in Model)
     {
         @Html.HiddenFor(model => item.SKILL_ID)
         <tr>
-            <td>@Html.DisplayFor(model => item.SKILL_ID)</td>
+            @*<td>@Html.DisplayFor(model => item.SKILL_ID)</td>*@
             <td>@Html.DisplayFor(model => item.CMP_NAME)</td>
             <td>@Html.DisplayFor(model => item.SKILL_NAME)</td>
 

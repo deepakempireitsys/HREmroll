@@ -62,20 +62,34 @@ namespace HREmroll.Controllers
         {
             try
             {
-                lvobj.CREATED_BY = 1;
-                lvobj.CREATED_DATE = DateTime.Now;
-                lvobj.MODIFIED_BY = 1;
-                lvobj.MODIFIED_DATE = DateTime.Now;
-                lvobj.BRANCH_NAME = "Default";
+                ModelState.Remove("LEAVEID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+
+                if (ModelState.IsValid)
+                {
+                    lvobj.CREATED_BY = 1;
+                    lvobj.CREATED_DATE = DateTime.Now;
+                    lvobj.MODIFIED_BY = 1;
+                    lvobj.MODIFIED_DATE = DateTime.Now;
+                    lvobj.BRANCH_NAME = "Default";
 
 
-                LeaveRepository lvrp = new LeaveRepository(_configuration);
-                lvrp.AddLeaveDetail(lvobj);
+                    LeaveRepository lvrp = new LeaveRepository(_configuration);
+                    lvrp.AddLeaveDetail(lvobj);
 
-                ViewBag.Message = "Records added successfully.";
+                    ViewBag.Message = "Records added successfully.";
 
-                return RedirectToAction("GetAllLeaveDetails");
+                    return RedirectToAction("GetAllLeaveDetails");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
 
+                    ViewBag.data = br.GetAllBranchs();
+
+                    return View();
+                }
             }
             catch
             {
@@ -102,11 +116,22 @@ namespace HREmroll.Controllers
         {
             try
             {
-                LeaveRepository lvrp = new LeaveRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    LeaveRepository lvrp = new LeaveRepository(_configuration);
 
-                lvrp.UpdateLeaveDetail(obj);
+                    lvrp.UpdateLeaveDetail(obj);
 
-                return RedirectToAction("GetAllLeaveDetails");
+                    return RedirectToAction("GetAllLeaveDetails");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+
+                    return View();
+                }
             }
             catch
             {

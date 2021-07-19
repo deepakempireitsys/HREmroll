@@ -1,5 +1,4 @@
-﻿
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -57,16 +56,23 @@ namespace HREmroll.Controllers
         {
             try
             {
-                //if (ModelState.IsValid)
-                //{
+                ModelState.Remove("LICENCE_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
+                if (ModelState.IsValid)
+                {
                     LicenceRepository objRepo = new LicenceRepository(_configuration);
                     objRepo.Add(obj);
 
                     ViewBag.Message = "Records added successfully.";
 
-                //}
-                return RedirectToAction("GetAll");
-                //return View();
+                    //}
+                    return RedirectToAction("GetAll");
+                }
+                else
+                {
+                    return View();
+                }
             }
             catch
             {
@@ -89,11 +95,19 @@ namespace HREmroll.Controllers
         {
             try
             {
-                LicenceRepository objRepo = new LicenceRepository(_configuration);
+                if (ModelState.IsValid)
+                {
+                    LicenceRepository objRepo = new LicenceRepository(_configuration);
 
-                objRepo.Update(obj);
+                    objRepo.Update(obj);
 
-                return RedirectToAction("GetAll");
+                    return RedirectToAction("GetAll");
+                }
+                else
+                {
+                    return View();
+
+                }
             }
             catch
             {

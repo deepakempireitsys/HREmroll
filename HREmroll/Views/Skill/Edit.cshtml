@@ -12,9 +12,6 @@
 </div>
 
 
-
-
-
 <div>
     @Html.ActionLink("Back to Skill List", "GetAll")
 
@@ -34,6 +31,7 @@
             </td>
 
             <td>
+                @Html.ValidationMessageFor(model => model.CMP_ID, "", new { @class = "text-danger" })
             </td>
         </tr>
 

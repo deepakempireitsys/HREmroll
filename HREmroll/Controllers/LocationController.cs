@@ -51,24 +51,33 @@ namespace HREmroll.Controllers
         {
             try
             {
-                obj.CREATED_BY = 1;
-                obj.CREATED_DATE = DateTime.Now;
-                obj.MODIFIED_BY = 1;
-                obj.MODIFIED_DATE = DateTime.Now;
-                
-                //if (ModelState.IsValid)
-                //{
-                //    
-                //
-                //}
-                LocationRepository objRepo = new LocationRepository(_configuration);
+                ModelState.Remove("LOCATION_ID");
+                ModelState.Remove("CREATED_DATE");
+                ModelState.Remove("MODIFIED_DATE");
 
-                objRepo.AddLocation(obj);
+                if (ModelState.IsValid)
+                {
+                    obj.CREATED_BY = 1;
+                    obj.CREATED_DATE = DateTime.Now;
+                    obj.MODIFIED_BY = 1;
+                    obj.MODIFIED_DATE = DateTime.Now;
 
-                ViewBag.Message = "Records added successfully.";
+                    LocationRepository objRepo = new LocationRepository(_configuration);
 
-                return RedirectToAction("GetAllLocations");
-                // return View("GetAllLocations");
+                    objRepo.AddLocation(obj);
+
+                    ViewBag.Message = "Records added successfully.";
+
+                    return RedirectToAction("GetAllLocations");
+                    // return View("GetAllLocations");
+                }
+                else
+                {
+                    BranchRepository br = new BranchRepository(_configuration);
+
+                    ViewBag.data = br.GetAllBranchs();
+                    return View();
+                }
             }
             catch
             {
