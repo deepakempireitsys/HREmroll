@@ -85,7 +85,7 @@ namespace HREmroll
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Company}/{action=CompanyLogin}/{id?}");
+                    pattern: "{controller=Account}/{action=UserLogin}/{id?}");
             });
         }
     }

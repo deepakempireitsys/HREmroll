@@ -288,5 +288,55 @@ namespace HREmroll.Repository
 
             }
         }
+
+
+        //Employee Contact Details
+        public int AddEmpContact(Employee obj)
+        {
+
+
+            try
+            {
+                DynamicParameters Param = new DynamicParameters();
+                Param.Add("@CMP_ID", obj.CURR_ADD);
+               
+                Param.Add("@FIRST_NAME", obj.PERM_ADD);
+                Param.Add("@MIDDLE_NAME", obj.PERM_TALUKA);
+                Param.Add("@LAST_NAME", obj.CURR_TALUKA);
+               
+                Param.Add("@EMPLOYEE_CODE", obj.PERM_DISTRICT);
+                Param.Add("@BRANCH_ID", obj.CURR_DISTRICT);
+                Param.Add("@GRADE_ID", obj.CURR_CITY_OR_VILLAGE);
+                Param.Add("@DATE_OF_JOINING", obj.PERM_CITY_OR_VILLAGE);
+                Param.Add("@SHIFT_ID", obj.CURR_PINCODE);
+                Param.Add("@DESIGNATION_ID", obj.PERM_PINCODE);
+                Param.Add("@DEPARTMENT_ID", obj.PERM_POLICE_STATION);
+                Param.Add("@EMP_TYPE_ID", obj.CURR_POLICE_STATION);
+                Param.Add("@CATEGORY_ID", obj.PERM_STATE);
+                Param.Add("@REPORTING_MANAGER_ID", obj.CURR_STATE);
+                Param.Add("@ENROLL_OR_PUNCH_CODE", obj.WORK_PHONE_NO);
+                Param.Add("@CTC", obj.EXTENSION_NO);
+                Param.Add("@SUB_BRANCH_ID", obj.NATIONALITY);
+               
+
+               
+                Param.Add("@StatementType", "Insert");
+
+                int i = 0;
+                i = _dapperAdapter.Execute("PROC_EMROLL_EMPLOYEE_CONTACTDETAILS", Param, commandType: CommandType.StoredProcedure);
+
+                return i;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+                throw ex;
+            }
+            finally
+            {
+
+            }
+
+        }
     }
 }

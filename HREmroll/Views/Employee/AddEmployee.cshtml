@@ -23,14 +23,14 @@
 </script>
 
 
-@
+
 <body>
 
 
 </body>
 
 @using (@Html.BeginForm(FormMethod.Post, new { enctype = "multipart/form-data" }))
-{@Html.AntiForgeryToken()
+{
 
     <script type="text/javascript">
         function readURL1(input) {
@@ -135,15 +135,6 @@
                         @Html.ValidationMessageFor(model => model.EMPLOYEE_CODE, "", new { @class = "text-danger" })
                     </td>
 
-                    @*<td>
-                            @Html.LabelFor(model => model.SUB_BRANCH_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                        </td>
-                        <td>
-                            @Html.DropDownListFor(model => model.SUB_BRANCH_ID, new SelectList(ViewBag.SBranch, "SUB_BRANCH_ID", "SUB_BRANCH_NAME"), "Select Sub Branch")
-                        </td>
-
-                        <td>
-                        </td>*@
                     <td>
                     </td>
                     <td>
@@ -231,16 +222,6 @@
                         @Html.ValidationMessageFor(model => model.CATEGORY_ID, "", new { @class = "text-danger" })
                     </td>
 
-
-                    @*<td>
-                            @Html.LabelFor(model => model.REPORTING_MANAGER_ID, htmlAttributes: new { @class = "control-label col-md-2" })
-                        </td>
-                        <td>
-                            @Html.DropDownListFor(model => model.REPORTING_MANAGER_ID, new SelectList(ViewBag.Data, "REPORTING_MANAGER_ID", "DESIGNATION_NAME"), "Select Branch")
-                        </td>
-
-                        <td>
-                        </td>*@
                 </tr>
 
                 <tr>
@@ -385,6 +366,8 @@
                     }
             </style>
            
+            <button type="button" class="button1" value="ContactDetails">Contact </button>
+
             <button type="button" class="button1" value="EmpDetails">Add employee details </button>
    
             <button type="button" class="button1" value="Attachments">Add Employee Attechment </button>

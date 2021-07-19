@@ -1,0 +1,42 @@
+﻿@model HREmroll.Models.Employee
+
+@{
+    ViewData["Title"] = " Add Contact Details";
+}
+
+@using (@Html.BeginForm("ContactDetails","Emplyee", FormMethod.Post))
+    
+{
+    @Html.AntiForgeryToken()
+
+
+    <div>
+  
+    <table>
+      
+        <tr>
+            <td>
+                @Html.LabelFor(model => model.CURR_ADD, htmlAttributes: new { @class = "control-label col-md-2" })
+            </td>
+            <td>
+                @Html.EditorFor(model => model.CURR_ADD, new { htmlAttributes = new { @class = "form-control" } })
+            </td>
+            <td>
+                @Html.ValidationMessageFor(model => model.CURR_ADD, "", new { @class = "text-danger" })
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Save" class="btn btn-default" />
+            </td>
+        </tr>
+    </table>
+</div>
+
+  
+   
+
+}
+
+
+

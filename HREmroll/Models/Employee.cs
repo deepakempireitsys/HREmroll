@@ -204,6 +204,18 @@ namespace HREmroll.Models
 		public String MOBILE_NO {get; set;}
 
 		[Display(Name = "OFFICIAL EMAIL")]
-		public String OFFICIAL_EMAIL {get; set;}
+		public String OFFICIAL_EMAIL {get; set; }
+
+		[Display(Name = "SAME AS PRESENT ADDRESS")]
+		public bool SAME_AS_PRESENT_ADD { get; set; }
+
+		
+		public bool COUNTRY_ID { get; set; }
+
+		
+		public bool STATE_ID { get; set; }
+
+		///Contact Details 
+
 	}
 }
